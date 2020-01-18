@@ -1,10 +1,13 @@
 package com.ejemplo.spring.facturacion.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +30,20 @@ public class Libro
 	
 	@Column(name = "Anio")
 	private Integer anioLibro;
+	
+	@JoinColumn
+	@ManyToOne(cascade = CascadeType.ALL)
+	private DetalleComprobante detalle;
 
 	
+	public DetalleComprobante getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(DetalleComprobante detalle) {
+		this.detalle = detalle;
+	}
+
 	public Integer getIdLibro() {
 		return idLibro;
 	}

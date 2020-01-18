@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +23,10 @@ public class DetalleComprobante
 	@JoinColumn
 	@OneToOne(cascade = CascadeType.ALL)
 	Comprobante comprobante;
+	
+	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	Libro libro;
 	
 	@Column(name = "NombreLibro")
 	private String nombreLibro;
@@ -59,6 +64,14 @@ public class DetalleComprobante
 
 	public void setCantidadLibroDetalle(Integer cantidadLibroDetalle) {
 		this.cantidadLibroDetalle = cantidadLibroDetalle;
+	}
+
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
 	}
 	
 }

@@ -22,13 +22,12 @@ public class Comprobante
 	@Column(name = "ID")
 	private Integer idComprobante;
 	
-	@JoinColumn
-	@ManyToOne(cascade = CascadeType.ALL)
-	Cliente cliente;
+	@Column(name = "NumeroComprobante")
+	private Integer numeroComprobante;
 	
 	@JoinColumn
 	@ManyToOne(cascade = CascadeType.ALL)
-	Libro libro;
+	Cliente cliente;
 	
 	@JoinColumn
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -49,4 +48,77 @@ public class Comprobante
 	
 	@Column(name = "MontoTotal")
 	private Float montoTotal;
+
+	
+	public Integer getIdComprobante() {
+		return idComprobante;
+	}
+
+	public void setIdComprobante(Integer idComprobante) {
+		this.idComprobante = idComprobante;
+	}
+
+	public Integer getNumeroComprobante() {
+		return numeroComprobante;
+	}
+
+	public void setNumeroComprobante(Integer numeroComprobante) {
+		this.numeroComprobante = numeroComprobante;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Sede getSede() {
+		return sede;
+	}
+
+	public void setSede(Sede sede) {
+		this.sede = sede;
+	}
+
+	public DetalleComprobante getDetallecomprobante() {
+		return detallecomprobante;
+	}
+
+	public void setDetallecomprobante(DetalleComprobante detallecomprobante) {
+		this.detallecomprobante = detallecomprobante;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public String getEstadoComprobante() {
+		return estadoComprobante;
+	}
+
+	public void setEstadoComprobante(String estadoComprobante) {
+		this.estadoComprobante = estadoComprobante;
+	}
+
+	public Date getFechaEmision() {
+		return fechaEmision;
+	}
+
+	public void setFechaEmision(Date fechaEmision) {
+		this.fechaEmision = fechaEmision;
+	}
+
+	public Float getMontoTotal() {
+		return montoTotal;
+	}
+
+	public void setMontoTotal(Float montoTotal) {
+		this.montoTotal = montoTotal;
+	}
 }
