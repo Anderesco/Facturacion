@@ -40,10 +40,31 @@ public class Cliente
 	@Column(name = "Celular")
 	private String celularCliente;
 	
-	@JoinColumn
-	@OneToOne(cascade = CascadeType.ALL)
-	private Comprobante comprobante;
+	//@JoinColumn
+	//@OneToOne(cascade = CascadeType.ALL)
+	//private Comprobante comprobante;
 	
+	
+	
+	
+	public Cliente() {
+	}
+
+	public Cliente(Integer idCliente, String nombreCliente, String apellidoPaternoCliente,
+			String apellidoMaternoCliente, String dniCliente, String rucCliente, Integer edad, String celularCliente/*,
+			Comprobante comprobante*/) 
+	{
+		this.idCliente = idCliente;
+		this.nombreCliente = nombreCliente;
+		this.apellidoPaternoCliente = apellidoPaternoCliente;
+		this.apellidoMaternoCliente = apellidoMaternoCliente;
+		this.dniCliente = dniCliente;
+		this.rucCliente = rucCliente;
+		this.edad = edad;
+		this.celularCliente = celularCliente;
+		//this.comprobante = comprobante;
+	}
+
 	public Integer getIdCliente() {
 		return idCliente;
 	}
@@ -108,13 +129,13 @@ public class Cliente
 		this.celularCliente = celularCliente;
 	}
 
-	public Comprobante getComprobante() {
+	/*public Comprobante getComprobante() {
 		return comprobante;
 	}
 
 	public void setComprobante(Comprobante comprobante) {
 		this.comprobante = comprobante;
-	}
+	}*/
 	
 	
 }

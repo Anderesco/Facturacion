@@ -26,6 +26,18 @@ public class Sede
 	private String telefonoSede;
 
 	
+	public Sede() {
+		super();
+	}
+
+	public Sede(Integer idSede, String nombreSede, String direccionSede, String telefonoSede) {
+		super();
+		this.idSede = idSede;
+		this.nombreSede = nombreSede;
+		this.direccionSede = direccionSede;
+		this.telefonoSede = telefonoSede;
+	}
+
 	public Integer getIdSede() {
 		return idSede;
 	}

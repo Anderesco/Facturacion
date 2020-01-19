@@ -20,19 +20,34 @@ public class DetalleComprobante
 	@Column(name = "ID")
 	private Integer idDetalle;
 	
-	@JoinColumn
-	@OneToOne(cascade = CascadeType.ALL)
-	Comprobante comprobante;
+	//@JoinColumn
+	//@OneToOne(cascade = CascadeType.ALL)
+	//Comprobante comprobante;
 	
-	@JoinColumn
-	@OneToMany(cascade = CascadeType.ALL)
-	Libro libro;
+	//@JoinColumn
+	//@OneToMany(cascade = CascadeType.ALL)
+	//Libro libro;
 	
 	@Column(name = "NombreLibro")
 	private String nombreLibro;
 	
 	@Column(name = "Cantidad")
 	private Integer cantidadLibroDetalle;
+	
+
+	public DetalleComprobante() {
+		super();
+	}
+
+	public DetalleComprobante(Integer idDetalle, /*Comprobante comprobante, Libro libro,*/ String nombreLibro,
+			Integer cantidadLibroDetalle) {
+		super();
+		this.idDetalle = idDetalle;
+		//this.comprobante = comprobante;
+		//this.libro = libro;
+		this.nombreLibro = nombreLibro;
+		this.cantidadLibroDetalle = cantidadLibroDetalle;
+	}
 
 	public Integer getIdDetalle() {
 		return idDetalle;
@@ -42,13 +57,13 @@ public class DetalleComprobante
 		this.idDetalle = idDetalle;
 	}
 
-	public Comprobante getComprobante() {
+	/*public Comprobante getComprobante() {
 		return comprobante;
 	}
 
 	public void setComprobante(Comprobante comprobante) {
 		this.comprobante = comprobante;
-	}
+	}*/
 
 	public String getNombreLibro() {
 		return nombreLibro;
@@ -66,12 +81,12 @@ public class DetalleComprobante
 		this.cantidadLibroDetalle = cantidadLibroDetalle;
 	}
 
-	public Libro getLibro() {
+	/*public Libro getLibro() {
 		return libro;
 	}
 
 	public void setLibro(Libro libro) {
 		this.libro = libro;
-	}
+	}*/
 	
 }

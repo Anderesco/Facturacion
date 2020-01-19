@@ -31,18 +31,33 @@ public class Libro
 	@Column(name = "Anio")
 	private Integer anioLibro;
 	
-	@JoinColumn
-	@ManyToOne(cascade = CascadeType.ALL)
-	private DetalleComprobante detalle;
+	//@JoinColumn
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//private DetalleComprobante detalle;
 
 	
-	public DetalleComprobante getDetalle() {
+	public Libro() {
+		super();
+	}
+
+	public Libro(Integer idLibro, String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro/*,
+			DetalleComprobante detalle*/) {
+		super();
+		this.idLibro = idLibro;
+		this.nombreLibro = nombreLibro;
+		this.precioLibro = precioLibro;
+		this.autorLibro = autorLibro;
+		this.anioLibro = anioLibro;
+		//this.detalle = detalle;
+	}
+
+	/*public DetalleComprobante getDetalle() {
 		return detalle;
 	}
 
 	public void setDetalle(DetalleComprobante detalle) {
 		this.detalle = detalle;
-	}
+	}*/
 
 	public Integer getIdLibro() {
 		return idLibro;
