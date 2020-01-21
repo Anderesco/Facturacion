@@ -37,7 +37,7 @@ private static SessionFactory sessionFactory;
 				
 				ajustes.put(Environment.SHOW_SQL, "true");
                 ajustes.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                ajustes.put(Environment.HBM2DDL_AUTO, "create-drop");
+                //ajustes.put(Environment.HBM2DDL_AUTO, "create");
                 
                 configuration.setProperties(ajustes);
                 configuration.addAnnotatedClass(Cliente.class);

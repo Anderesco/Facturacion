@@ -2,6 +2,8 @@ package com.ejemplo.spring.facturacion.bean;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
 public class ComprobanteBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;

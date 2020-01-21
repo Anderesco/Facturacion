@@ -15,7 +15,9 @@ public class ComprobanteController
 	@GetMapping("comprobante")
 	public String MostrarComprobante()
 	{
-		comprobanteServiceImpl.mostrarComprobante();
+		comprobanteServiceImpl.guardarComprobante().forEach(com -> {
+			System.out.println(com.getID());
+		});;
 		
 		return "Index";
 	}
