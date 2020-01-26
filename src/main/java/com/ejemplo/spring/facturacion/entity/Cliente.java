@@ -41,7 +41,7 @@ public class Cliente
 	private String celularCliente;
 	
 	//@JoinColumn
-	//@OneToOne(cascade = CascadeType.ALL)
+	//@OneToMany(cascade = CascadeType.ALL)
 	//private Comprobante comprobante;
 	
 	

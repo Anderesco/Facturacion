@@ -34,6 +34,7 @@ public class ComprobanteServiceImpl implements ComprobanteService
 			ComprobanteBean comprobanteBean = new ComprobanteBean();
 			comprobanteBean.setID(comprobante.getIdComprobante());
 			comprobanteBean.setNumeroComprobante(comprobante.getNumeroComprobante());
+			comprobanteBean.setEstado(comprobante.getEstadoComprobante());
 			return comprobanteBean;
 		}).collect(Collectors.toList());
 	}
