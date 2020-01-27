@@ -9,8 +9,14 @@ public class DetalleComprobanteBean implements Serializable
 	private Integer ID;
 	private String nombreLibro;
 	private Integer cantidadLibro;
+	private Float precioUnitario;
 	
-	
+	public Float getPrecioUnitario() {
+		return precioUnitario;
+	}
+	public void setPrecioUnitario(Float precioUnitario) {
+		this.precioUnitario = precioUnitario;
+	}
 	public Integer getID() {
 		return ID;
 	}

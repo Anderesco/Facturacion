@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.ejemplo.spring.facturacion.entity.Libro;
 import com.ejemplo.spring.facturacion.util.HibernateUtil;
 
+@Component
 public class LibroDao 
 {
 	public void guardarLibro(Libro libro) 
@@ -39,7 +41,7 @@ public class LibroDao
     {
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) 
         {
-            return session.createQuery("from libro", Libro.class).list();
+            return session.createQuery("from Libro", Libro.class).list();
         }
     }
     

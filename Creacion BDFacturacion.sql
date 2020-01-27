@@ -18,21 +18,21 @@ CREATE TABLE Cliente
 
 CREATE TABLE Comprobante 
 (
-  ID 			INT 		NOT NULL  AUTO_INCREMENT,
-  IDCliente 	INT 		NULL,
-  IDSede 		INT 		NULL,
-  IDDetalle 	INT 		NULL,
-  FechaCreacion DATETIME 	NULL,
-  Estado 		VARCHAR(10) NULL,
-  FechaEmision 	DATETIME 	NULL,
-  MontoTotal 	FLOAT 		NULL,
+  ID 				INT 		NOT NULL  AUTO_INCREMENT,
+  IDCliente 		INT 		NULL,
+  IDSede 			INT 		NULL,
+  NumeroComprobante INT 		NULL,
+  FechaCreacion 	DATETIME 	NULL,
+  Estado 			VARCHAR(10) NULL,
+  FechaEmision 		DATETIME 	NULL,
+  MontoTotal 		FLOAT 		NULL,
   
   PRIMARY KEY (ID)
 );
 
 CREATE TABLE Sede 
 (
-  ID 	INT 			NOT NULL   AUTO_INCREMENT,
+  ID 		INT 		NOT NULL   AUTO_INCREMENT,
   Nombre 	VARCHAR(45) NULL,
   Direccion VARCHAR(50) NULL,
   Telefono 	VARCHAR(7) 	NULL,
@@ -42,16 +42,17 @@ CREATE TABLE Sede
 
 CREATE TABLE DetalleComprobante 
 (
-  ID 		  INT NOT 	  NULL AUTO_INCREMENT,
-  IDLibro 	  INT 		  NULL,
-  Cantidad 	  INT 		  NULL,
+  ID 		  	INT NOT NULL 	AUTO_INCREMENT,
+  IDComprobante INT NOT NULL,
+  IDLibro 	  	INT NULL,
+  Cantidad 	  	INT NULL,
   
   PRIMARY KEY (ID)
 );
 
 CREATE TABLE Libro
 (
-  ID 			 INT 		 NOT NULL ,
+  ID 			 INT 		 NOT NULL  AUTO_INCREMENT,
   Nombre 		 VARCHAR(50) NULL,
   PrecioUnitario FLOAT 		 NULL,
   Autor 		 VARCHAR(30) NULL,
@@ -62,5 +63,7 @@ CREATE TABLE Libro
 
 ALTER TABLE DetalleComprobante ADD CONSTRAINT fk_libro   FOREIGN KEY (IDLibro) REFERENCES Libro(ID);
 ALTER TABLE Comprobante  	   ADD CONSTRAINT fk_cliente FOREIGN KEY (IDCliente) REFERENCES Cliente(ID);
-ALTER TABLE Comprobante 	   ADD CONSTRAINT fk_sede    FOREIGN KEY (IDSede)    REFERENCES Sede (IDSede);
-ALTER TABLE Comprobante 	   ADD CONSTRAINT fk_detalle FOREIGN KEY (IDDetalle) REFERENCES DetalleComprobante(ID);
+ALTER TABLE Comprobante 	   ADD CONSTRAINT fk_sede    FOREIGN KEY (IDSede)    REFERENCES Sede (ID);
+ALTER TABLE Detallecomprobante ADD CONSTRAINT fk_detalle FOREIGN KEY (IDComprobante) REFERENCES Comprobante(ID);
+
+

@@ -1,5 +1,7 @@
 package com.ejemplo.spring.facturacion.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,33 +33,37 @@ public class Libro
 	@Column(name = "Anio")
 	private Integer anioLibro;
 	
-	//@JoinColumn
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//private DetalleComprobante detalle;
+	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<DetalleComprobante> detalleComprobante;
 
 	
 	public Libro() {
 		super();
 	}
+	
 
-	public Libro(Integer idLibro, String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro/*,
-			DetalleComprobante detalle*/) {
+	public Libro(Integer idLibro, String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro,
+			List<DetalleComprobante> detalleComprobante) {
 		super();
 		this.idLibro = idLibro;
 		this.nombreLibro = nombreLibro;
 		this.precioLibro = precioLibro;
 		this.autorLibro = autorLibro;
 		this.anioLibro = anioLibro;
-		//this.detalle = detalle;
+		this.detalleComprobante = detalleComprobante;
 	}
 
-	/*public DetalleComprobante getDetalle() {
-		return detalle;
+
+	public List<DetalleComprobante> getDetalleComprobante() {
+		return detalleComprobante;
 	}
 
-	public void setDetalle(DetalleComprobante detalle) {
-		this.detalle = detalle;
-	}*/
+
+	public void setDetalleComprobante(List<DetalleComprobante> detalleComprobante) {
+		this.detalleComprobante = detalleComprobante;
+	}
+
 
 	public Integer getIdLibro() {
 		return idLibro;

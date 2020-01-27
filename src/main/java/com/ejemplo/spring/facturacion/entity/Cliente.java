@@ -1,5 +1,7 @@
 package com.ejemplo.spring.facturacion.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;	
 import javax.persistence.Table;
 
 @Entity
@@ -40,19 +42,25 @@ public class Cliente
 	@Column(name = "Celular")
 	private String celularCliente;
 	
-	//@JoinColumn
-	//@OneToMany(cascade = CascadeType.ALL)
-	//private Comprobante comprobante;
+	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Comprobante> comprobante;
 	
 	
-	
-	
+	public List<Comprobante> getComprobante() {
+		return comprobante;
+	}
+
+	public void setComprobante(List<Comprobante> comprobante) {
+		this.comprobante = comprobante;
+	}
+
 	public Cliente() {
 	}
 
 	public Cliente(Integer idCliente, String nombreCliente, String apellidoPaternoCliente,
-			String apellidoMaternoCliente, String dniCliente, String rucCliente, Integer edad, String celularCliente/*,
-			Comprobante comprobante*/) 
+			String apellidoMaternoCliente, String dniCliente, String rucCliente, Integer edad, String celularCliente,
+			List<Comprobante> comprobante) 
 	{
 		this.idCliente = idCliente;
 		this.nombreCliente = nombreCliente;
@@ -62,7 +70,7 @@ public class Cliente
 		this.rucCliente = rucCliente;
 		this.edad = edad;
 		this.celularCliente = celularCliente;
-		//this.comprobante = comprobante;
+		this.comprobante = comprobante;
 	}
 
 	public Integer getIdCliente() {
@@ -128,14 +136,5 @@ public class Cliente
 	public void setCelularCliente(String celularCliente) {
 		this.celularCliente = celularCliente;
 	}
-
-	/*public Comprobante getComprobante() {
-		return comprobante;
-	}
-
-	public void setComprobante(Comprobante comprobante) {
-		this.comprobante = comprobante;
-	}*/
-	
 	
 }

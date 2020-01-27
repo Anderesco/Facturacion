@@ -2,8 +2,6 @@ package com.ejemplo.spring.facturacion.bean;
 
 import java.io.Serializable;
 
-import org.springframework.stereotype.Component;
-
 public class ComprobanteBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -15,13 +13,17 @@ public class ComprobanteBean implements Serializable
 	private String apellidoMaterno;
 	private String DNI;
 	private String RUC;
-	private String[] libros;
-	private Integer[] cantidadlibros;
-	private String direccionSede;
 	private Float montototal;
 	private String estado;
+	private String sede;
 	
 	
+	public String getSede() {
+		return sede;
+	}
+	public void setSede(String sede) {
+		this.sede = sede;
+	}
 	public String getEstado() {
 		return estado;
 	}
@@ -64,24 +66,7 @@ public class ComprobanteBean implements Serializable
 	public void setApellidoMaterno(String apellidoMaterno) {
 		this.apellidoMaterno = apellidoMaterno;
 	}
-	public String[] getLibros() {
-		return libros;
-	}
-	public void setLibros(String[] libros) {
-		this.libros = libros;
-	}
-	public Integer[] getCantidadlibros() {
-		return cantidadlibros;
-	}
-	public void setCantidadlibros(Integer[] cantidadlibros) {
-		this.cantidadlibros = cantidadlibros;
-	}
-	public String getDireccionSede() {
-		return direccionSede;
-	}
-	public void setDireccionSede(String direccionSede) {
-		this.direccionSede = direccionSede;
-	}
+
 	public Integer getNumeroComprobante() {
 		return numeroComprobante;
 	}

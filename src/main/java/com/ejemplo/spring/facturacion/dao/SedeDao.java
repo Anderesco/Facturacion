@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.ejemplo.spring.facturacion.entity.Sede;
 import com.ejemplo.spring.facturacion.util.HibernateUtil;
 
+@Component
 public class SedeDao 
 {
 	public void guardarSede(Sede sede) 
@@ -39,7 +41,7 @@ public class SedeDao
     {
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) 
         {
-            return session.createQuery("from sede", Sede.class).list();
+            return session.createQuery("from Sede", Sede.class).list();
         }
     }
     

@@ -1,10 +1,15 @@
 package com.ejemplo.spring.facturacion.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +18,7 @@ public class Sede
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDSede")
+	@Column(name = "ID")
 	private Integer idSede;
 	
 	@Column(name = "Nombre")
@@ -25,17 +30,30 @@ public class Sede
 	@Column(name = "Telefono")
 	private String telefonoSede;
 
+	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Comprobante> comprobante;
 	
 	public Sede() {
 		super();
 	}
 
-	public Sede(Integer idSede, String nombreSede, String direccionSede, String telefonoSede) {
+	public Sede(Integer idSede, String nombreSede, String direccionSede, String telefonoSede, List<Comprobante> comprobante) {
 		super();
 		this.idSede = idSede;
 		this.nombreSede = nombreSede;
 		this.direccionSede = direccionSede;
 		this.telefonoSede = telefonoSede;
+		this.comprobante = comprobante;
+	}
+
+	
+	public List<Comprobante> getComprobante() {
+		return comprobante;
+	}
+
+	public void setComprobante(List<Comprobante> comprobante) {
+		this.comprobante = comprobante;
 	}
 
 	public Integer getIdSede() {

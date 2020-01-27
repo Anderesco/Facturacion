@@ -1,6 +1,7 @@
 package com.ejemplo.spring.facturacion.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -28,17 +29,17 @@ public class Comprobante
 	@Column(name = "NumeroComprobante")
 	private Integer numeroComprobante;
 	
-	//@JoinColumn
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//Cliente cliente;
+	@JoinColumn(name = "IDCliente")
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Cliente cliente;
 	
-	//@JoinColumn
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//Sede sede;
+	@JoinColumn(name = "IDSede")
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Sede sede;
 	
-	//@JoinColumn
-	//@OneToOne(cascade = CascadeType.ALL)
-	//DetalleComprobante detallecomprobante;
+	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<DetalleComprobante> detallecomprobante;
 	
 	@Column(name = "FechaCreacion")
 	private Date fechaCreacion;
@@ -57,19 +58,28 @@ public class Comprobante
 		super();
 	}
 
-	public Comprobante(Integer idComprobante, Integer numeroComprobante/*, Cliente cliente, Sede sede,
-			DetalleComprobante detallecomprobante*/, Date fechaCreacion, String estadoComprobante, Date fechaEmision,
-			Float montoTotal) {
+	
+	public Comprobante(Integer idComprobante, Integer numeroComprobante, Cliente cliente, Sede sede,
+			List<DetalleComprobante> detallecomprobante, Date fechaCreacion, String estadoComprobante,
+			Date fechaEmision, Float montoTotal) {
 		super();
 		this.idComprobante = idComprobante;
 		this.numeroComprobante = numeroComprobante;
-		//this.cliente = cliente;
-		//this.sede = sede;
-		//this.detallecomprobante = detallecomprobante;
+		this.cliente = cliente;
+		this.sede = sede;
+		this.detallecomprobante = detallecomprobante;
 		this.fechaCreacion = fechaCreacion;
 		this.estadoComprobante = estadoComprobante;
 		this.fechaEmision = fechaEmision;
 		this.montoTotal = montoTotal;
+	}
+
+	public List<DetalleComprobante> getDetallecomprobante() {
+		return detallecomprobante;
+	}
+
+	public void setDetallecomprobante(List<DetalleComprobante> detallecomprobante) {
+		this.detallecomprobante = detallecomprobante;
 	}
 
 	public Integer getIdComprobante() {
@@ -88,7 +98,7 @@ public class Comprobante
 		this.numeroComprobante = numeroComprobante;
 	}
 
-	/*public Cliente getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
@@ -102,15 +112,7 @@ public class Comprobante
 
 	public void setSede(Sede sede) {
 		this.sede = sede;
-	}*/
-
-	/*public DetalleComprobante getDetallecomprobante() {
-		return detallecomprobante;
 	}
-
-	public void setDetallecomprobante(DetalleComprobante detallecomprobante) {
-		this.detallecomprobante = detallecomprobante;
-	}*/
 
 	public Date getFechaCreacion() {
 		return fechaCreacion;

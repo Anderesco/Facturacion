@@ -1,6 +1,5 @@
 package com.ejemplo.spring.facturacion.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
+import com.ejemplo.spring.facturacion.service.ClienteServiceImpl;
 import com.ejemplo.spring.facturacion.service.ComprobanteServiceImpl;
+import com.ejemplo.spring.facturacion.service.DetalleComprobanteServiceImpl;
+import com.ejemplo.spring.facturacion.service.SedeServiceImpl;
 
 @Controller("/")
 public class ComprobanteController 
@@ -17,16 +19,53 @@ public class ComprobanteController
 	@Autowired
 	ComprobanteServiceImpl comprobanteServiceImpl;
 	
+	@Autowired
+	ClienteServiceImpl clienteServiceImpl;
+	
+	@Autowired
+	DetalleComprobanteServiceImpl detalleComprobanteServiceImpl;
+	
+	@Autowired
+	SedeServiceImpl sedeServiceImpl;
+	
 	@GetMapping("comprobante")
 	public String MostrarComprobante(Model modelo)
 	{
-		ComprobanteBean comprobanteBean = new ComprobanteBean();
-		List<ComprobanteBean> listaComprobanteBean = comprobanteServiceImpl.guardarComprobante();		
-		/*comprobanteServiceImpl.guardarComprobante().forEach(com -> {
-			System.out.println(com.getID());
-			
+		List<ComprobanteBean> listaComprobanteBean = comprobanteServiceImpl.guardarComprobante();
+		comprobanteServiceImpl.guardarComprobante().forEach(com -> {
+			System.out.println("ID: " + com.getID());
+			System.out.println("Numero Comprobante: " + com.getNumeroComprobante());
+			System.out.println("NombreCliente: " + com.getNombreCliente());
+			System.out.println("Apellido Paterno: " + com.getApellidoPaterno());
+			System.out.println("Apellido Materno: " + com.getApellidoMaterno());
+			System.out.println("DNI: " + com.getDNI());
+			System.out.println("RUC: " + com.getRUC());
+			System.out.println("Monto total: " + com.getMontototal());
+			System.out.println("Estado: " + com.getEstado());
+			System.out.println("Sede:" + com.getSede());
+		}); 
+		
+		/*clienteServiceImpl.guardarCliente().forEach(cliente -> {
+			System.out.println("Nombre : " + cliente.getNombreCliente());
+			System.out.println("Apellido Pat. : " + cliente.getApellidoPaterno());
+			System.out.println("Apellido Mat. :" + cliente.getApellidoMaterno());
+			System.out.println("DNI : " + cliente.getDNI());
+			System.out.println("RUC : " + cliente.getRUC());
+		});
+		
+		detalleComprobanteServiceImpl.guardarDetalle().forEach(detalle -> {
+			System.out.println("ID: " + detalle.getID());
+			System.out.println("Cantidad de Libros: " + detalle.getCantidadLibro());
+			System.out.println("Nombre Libro:" + detalle.getNombreLibro());
 		});*/
 		
+		/*sedeServiceImpl.guardarSede().forEach(sede -> {
+			System.out.println("ID" + sede.getID());
+			System.out.println("Nombre Sede: " + sede.getNombreSede());
+			System.out.println("Direccion: " + sede.getDireccionSede());
+			System.out.println("Telefono: " + sede.getTelefonoSede());
+		});
+		*/
 		modelo.addAttribute("comprobanteBean", listaComprobanteBean);
 		
 		

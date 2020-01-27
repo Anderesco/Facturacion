@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.ejemplo.spring.facturacion.entity.DetalleComprobante;
 import com.ejemplo.spring.facturacion.util.HibernateUtil;
 
+@Component
 public class DetalleComprobanteDao 
 {
 	public void guardarDetalleComprobante(DetalleComprobante detalle) 
@@ -39,7 +41,7 @@ public class DetalleComprobanteDao
     {
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) 
         {
-            return session.createQuery("from detalecomprobante", DetalleComprobante.class).list();
+            return session.createQuery("from DetalleComprobante", DetalleComprobante.class).list();
         }
     }
     
