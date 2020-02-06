@@ -19,7 +19,7 @@ public class Sede
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer idSede;
+	private Long idSede;
 	
 	@Column(name = "Nombre")
 	private String nombreSede;
@@ -38,9 +38,7 @@ public class Sede
 		super();
 	}
 
-	public Sede(Integer idSede, String nombreSede, String direccionSede, String telefonoSede, List<Comprobante> comprobante) {
-		super();
-		this.idSede = idSede;
+	public Sede(String nombreSede, String direccionSede, String telefonoSede, List<Comprobante> comprobante) {
 		this.nombreSede = nombreSede;
 		this.direccionSede = direccionSede;
 		this.telefonoSede = telefonoSede;
@@ -56,11 +54,11 @@ public class Sede
 		this.comprobante = comprobante;
 	}
 
-	public Integer getIdSede() {
+	public Long getIdSede() {
 		return idSede;
 	}
 
-	public void setIdSede(Integer idSede) {
+	public void setIdSede(Long idSede) {
 		this.idSede = idSede;
 	}
 
@@ -87,5 +85,15 @@ public class Sede
 	public void setTelefonoSede(String telefonoSede) {
 		this.telefonoSede = telefonoSede;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Sede{" +
+				"idSede=" + idSede +
+				", nombreSede='" + nombreSede + '\'' +
+				", direccionSede='" + direccionSede + '\'' +
+				", telefonoSede='" + telefonoSede + '\'' +
+				", comprobante=" + comprobante +
+				'}';
+	}
 }

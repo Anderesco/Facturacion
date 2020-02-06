@@ -17,7 +17,7 @@ public class DetalleComprobante
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer idDetalle;
+	private Long idDetalle;
 	
 	@JoinColumn(name = "IDComprobante")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -35,9 +35,7 @@ public class DetalleComprobante
 		super();
 	}
 	
-	public DetalleComprobante(Integer idDetalle, Comprobante comprobante, Libro libro, Integer cantidadLibroDetalle) {
-		super();
-		this.idDetalle = idDetalle;
+	public DetalleComprobante(Comprobante comprobante, Libro libro, Integer cantidadLibroDetalle) {
 		this.comprobante = comprobante;
 		this.libro = libro;
 		this.cantidadLibroDetalle = cantidadLibroDetalle;
@@ -65,11 +63,11 @@ public class DetalleComprobante
 		this.comprobante = comprobante;
 	}
 
-	public Integer getIdDetalle() {
+	public Long getIdDetalle() {
 		return idDetalle;
 	}
 
-	public void setIdDetalle(Integer idDetalle) {
+	public void setIdDetalle(Long idDetalle) {
 		this.idDetalle = idDetalle;
 	}
 
@@ -80,5 +78,14 @@ public class DetalleComprobante
 	public void setCantidadLibroDetalle(Integer cantidadLibroDetalle) {
 		this.cantidadLibroDetalle = cantidadLibroDetalle;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "DetalleComprobante{" +
+				"idDetalle=" + idDetalle +
+				", comprobante=" + comprobante +
+				", libro=" + libro +
+				", cantidadLibroDetalle=" + cantidadLibroDetalle +
+				'}';
+	}
 }

@@ -19,7 +19,7 @@ public class Cliente
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer idCliente;
+	private Long idCliente;
 	
 	@Column(name = "Nombre")
 	private String nombreCliente;
@@ -58,11 +58,10 @@ public class Cliente
 	public Cliente() {
 	}
 
-	public Cliente(Integer idCliente, String nombreCliente, String apellidoPaternoCliente,
+	public Cliente(String nombreCliente, String apellidoPaternoCliente,
 			String apellidoMaternoCliente, String dniCliente, String rucCliente, Integer edad, String celularCliente,
-			List<Comprobante> comprobante) 
-	{
-		this.idCliente = idCliente;
+			List<Comprobante> comprobante)
+    {
 		this.nombreCliente = nombreCliente;
 		this.apellidoPaternoCliente = apellidoPaternoCliente;
 		this.apellidoMaternoCliente = apellidoMaternoCliente;
@@ -73,11 +72,11 @@ public class Cliente
 		this.comprobante = comprobante;
 	}
 
-	public Integer getIdCliente() {
+	public Long getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(Integer idCliente) {
+	public void setIdCliente(Long idCliente) {
 		this.idCliente = idCliente;
 	}
 
@@ -136,5 +135,19 @@ public class Cliente
 	public void setCelularCliente(String celularCliente) {
 		this.celularCliente = celularCliente;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Cliente{" +
+				"idCliente=" + idCliente +
+				", nombreCliente='" + nombreCliente + '\'' +
+				", apellidoPaternoCliente='" + apellidoPaternoCliente + '\'' +
+				", apellidoMaternoCliente='" + apellidoMaternoCliente + '\'' +
+				", dniCliente='" + dniCliente + '\'' +
+				", rucCliente='" + rucCliente + '\'' +
+				", edad=" + edad +
+				", celularCliente='" + celularCliente + '\'' +
+				", comprobante=" + comprobante +
+				'}';
+	}
 }

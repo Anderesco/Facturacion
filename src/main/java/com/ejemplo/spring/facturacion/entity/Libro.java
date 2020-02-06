@@ -19,7 +19,7 @@ public class Libro
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer idLibro;
+	private Long idLibro;
 	
 	@Column(name = "Nombre")
 	private String nombreLibro;
@@ -43,10 +43,8 @@ public class Libro
 	}
 	
 
-	public Libro(Integer idLibro, String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro,
+	public Libro(String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro,
 			List<DetalleComprobante> detalleComprobante) {
-		super();
-		this.idLibro = idLibro;
 		this.nombreLibro = nombreLibro;
 		this.precioLibro = precioLibro;
 		this.autorLibro = autorLibro;
@@ -65,11 +63,11 @@ public class Libro
 	}
 
 
-	public Integer getIdLibro() {
+	public Long getIdLibro() {
 		return idLibro;
 	}
 
-	public void setIdLibro(Integer idLibro) {
+	public void setIdLibro(Long idLibro) {
 		this.idLibro = idLibro;
 	}
 
@@ -105,6 +103,17 @@ public class Libro
 		this.anioLibro = anioLibro;
 	}
 
+	@Override
+	public String toString() {
+		return "Libro{" +
+				"idLibro=" + idLibro +
+				", nombreLibro='" + nombreLibro + '\'' +
+				", precioLibro=" + precioLibro +
+				", autorLibro='" + autorLibro + '\'' +
+				", anioLibro=" + anioLibro +
+				", detalleComprobante=" + detalleComprobante +
+				'}';
+	}
 }
 	
 	

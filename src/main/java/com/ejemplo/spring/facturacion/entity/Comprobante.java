@@ -24,10 +24,10 @@ public class Comprobante
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer idComprobante;
+	private Long idComprobante;
 	
 	@Column(name = "NumeroComprobante")
-	private Integer numeroComprobante;
+	private Double numeroComprobante;
 	
 	@JoinColumn(name = "IDCliente")
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -51,7 +51,7 @@ public class Comprobante
 	private Date fechaEmision;
 	
 	@Column(name = "MontoTotal")
-	private Float montoTotal;
+	private Double montoTotal;
 
 	
 	public Comprobante() {
@@ -59,9 +59,9 @@ public class Comprobante
 	}
 
 	
-	public Comprobante(Integer numeroComprobante, Cliente cliente, Sede sede,
+	public Comprobante(Double numeroComprobante, Cliente cliente, Sede sede,
 			List<DetalleComprobante> detallecomprobante, Date fechaCreacion, String estadoComprobante,
-			Date fechaEmision, Float montoTotal) {
+			Date fechaEmision, Double montoTotal) {
 		this.numeroComprobante = numeroComprobante;
 		this.cliente = cliente;
 		this.sede = sede;
@@ -80,19 +80,19 @@ public class Comprobante
 		this.detallecomprobante = detallecomprobante;
 	}
 
-	public Integer getIdComprobante() {
+	public Long getIdComprobante() {
 		return idComprobante;
 	}
 
-	public void setIdComprobante(Integer idComprobante) {
+	public void setIdComprobante(Long idComprobante) {
 		this.idComprobante = idComprobante;
 	}
 
-	public Integer getNumeroComprobante() {
+	public Double getNumeroComprobante() {
 		return numeroComprobante;
 	}
 
-	public void setNumeroComprobante(Integer numeroComprobante2) {
+	public void setNumeroComprobante(Double numeroComprobante2) {
 		this.numeroComprobante = numeroComprobante2;
 	}
 
@@ -136,20 +136,26 @@ public class Comprobante
 		this.fechaEmision = fechaEmision;
 	}
 
-	public Float getMontoTotal() {
+	public Double getMontoTotal() {
 		return montoTotal;
 	}
 
-	public void setMontoTotal(Float montoTotal) {
+	public void setMontoTotal(Double montoTotal) {
 		this.montoTotal = montoTotal;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Comprobante [idComprobante=" + idComprobante + ", numeroComprobante=" + numeroComprobante + ", cliente="
-				+ cliente + ", sede=" + sede + ", detallecomprobante=" + detallecomprobante + ", fechaCreacion="
-				+ fechaCreacion + ", estadoComprobante=" + estadoComprobante + ", fechaEmision=" + fechaEmision
-				+ ", montoTotal=" + montoTotal + "]";
+		return "Comprobante{" +
+				"idComprobante=" + idComprobante +
+				", numeroComprobante=" + numeroComprobante +
+				", cliente=" + cliente +
+				", sede=" + sede +
+				", detallecomprobante=" + detallecomprobante +
+				", fechaCreacion=" + fechaCreacion +
+				", estadoComprobante='" + estadoComprobante + '\'' +
+				", fechaEmision=" + fechaEmision +
+				", montoTotal=" + montoTotal +
+				'}';
 	}
 }
