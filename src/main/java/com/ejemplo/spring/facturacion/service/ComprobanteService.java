@@ -6,5 +6,5 @@ import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
 
 public interface ComprobanteService 
 {
-	public List<ComprobanteBean> guardarComprobante();
+	public List<ComprobanteBean> mostrarComprobante();
 }

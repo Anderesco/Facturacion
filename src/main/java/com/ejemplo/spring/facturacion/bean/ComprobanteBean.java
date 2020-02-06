@@ -79,5 +79,13 @@ public class ComprobanteBean implements Serializable
 	public void setMontototal(Float montototal) {
 		this.montototal = montototal;
 	}
+	@Override
+	public String toString() {
+		return "ComprobanteBean [ID=" + ID + ", numeroComprobante=" + numeroComprobante + ", nombreCliente="
+				+ nombreCliente + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno
+				+ ", DNI=" + DNI + ", RUC=" + RUC + ", montototal=" + montototal + ", estado=" + estado + ", sede="
+				+ sede + "]";
+	}
+	
 	
 }

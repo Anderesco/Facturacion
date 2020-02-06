@@ -59,11 +59,9 @@ public class Comprobante
 	}
 
 	
-	public Comprobante(Integer idComprobante, Integer numeroComprobante, Cliente cliente, Sede sede,
+	public Comprobante(Integer numeroComprobante, Cliente cliente, Sede sede,
 			List<DetalleComprobante> detallecomprobante, Date fechaCreacion, String estadoComprobante,
 			Date fechaEmision, Float montoTotal) {
-		super();
-		this.idComprobante = idComprobante;
 		this.numeroComprobante = numeroComprobante;
 		this.cliente = cliente;
 		this.sede = sede;
@@ -94,8 +92,8 @@ public class Comprobante
 		return numeroComprobante;
 	}
 
-	public void setNumeroComprobante(Integer numeroComprobante) {
-		this.numeroComprobante = numeroComprobante;
+	public void setNumeroComprobante(Integer numeroComprobante2) {
+		this.numeroComprobante = numeroComprobante2;
 	}
 
 	public Cliente getCliente() {
@@ -144,5 +142,14 @@ public class Comprobante
 
 	public void setMontoTotal(Float montoTotal) {
 		this.montoTotal = montoTotal;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Comprobante [idComprobante=" + idComprobante + ", numeroComprobante=" + numeroComprobante + ", cliente="
+				+ cliente + ", sede=" + sede + ", detallecomprobante=" + detallecomprobante + ", fechaCreacion="
+				+ fechaCreacion + ", estadoComprobante=" + estadoComprobante + ", fechaEmision=" + fechaEmision
+				+ ", montoTotal=" + montoTotal + "]";
 	}
 }

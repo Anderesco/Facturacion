@@ -18,9 +18,13 @@ D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\SedeServiceI
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\SedeBean.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\dao\ClienteDao.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\ClienteServiceImpl.java
+D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\LibroService.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\DetalleComprobanteBean.java
+D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\ComprobanteBeanEnvio.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\ComprobanteService.java
+D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\LibroServiceImpl.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\dao\DetalleComprobanteDao.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\entity\DetalleComprobante.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\entity\Libro.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\FacturacionApplication.java
+D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\util\ObtenerJSONURL.java

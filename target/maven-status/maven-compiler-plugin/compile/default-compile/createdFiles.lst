@@ -6,13 +6,16 @@ com\ejemplo\spring\facturacion\service\DetalleComprobanteService.class
 com\ejemplo\spring\facturacion\service\SedeServiceImpl.class
 com\ejemplo\spring\facturacion\bean\ComprobanteBean.class
 com\ejemplo\spring\facturacion\bean\SedeBean.class
+com\ejemplo\spring\facturacion\service\LibroService.class
 com\ejemplo\spring\facturacion\entity\Libro.class
 com\ejemplo\spring\facturacion\util\HibernateUtil.class
 com\ejemplo\spring\facturacion\bean\LibroBean.class
+com\ejemplo\spring\facturacion\bean\ComprobanteBeanEnvio.class
 com\ejemplo\spring\facturacion\service\DetalleComprobanteServiceImpl.class
 com\ejemplo\spring\facturacion\entity\Comprobante.class
 com\ejemplo\spring\facturacion\service\ClienteService.class
 com\ejemplo\spring\facturacion\entity\DetalleComprobante.class
+com\ejemplo\spring\facturacion\util\ObtenerJSONURL.class
 com\ejemplo\spring\facturacion\dao\ClienteDao.class
 com\ejemplo\spring\facturacion\service\ComprobanteService.class
 com\ejemplo\spring\facturacion\dao\SedeDao.class
@@ -21,6 +24,7 @@ com\ejemplo\spring\facturacion\bean\ClienteBean.class
 com\ejemplo\spring\facturacion\dao\LibroDao.class
 com\ejemplo\spring\facturacion\controller\ComprobanteController.class
 com\ejemplo\spring\facturacion\FacturacionApplication.class
+com\ejemplo\spring\facturacion\service\LibroServiceImpl.class
 com\ejemplo\spring\facturacion\service\SedeService.class
 com\ejemplo\spring\facturacion\service\ComprobanteServiceImpl.class
 com\ejemplo\spring\facturacion\dao\DetalleComprobanteDao.class
