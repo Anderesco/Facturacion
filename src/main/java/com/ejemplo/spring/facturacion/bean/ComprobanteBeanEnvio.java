@@ -17,7 +17,7 @@ public class ComprobanteBeanEnvio
 	
 	public ComprobanteBeanEnvio(Long iD, Double numeroComprobante, String nombreCliente, String apellidoPaterno,
 			String apellidoMaterno, String dNI, String rUC, Double montototal, String estado, String sede) {
-		this.ID = iD;
+		ID = iD;
 		this.numeroComprobante = numeroComprobante;
 		this.nombreCliente = nombreCliente;
 		this.apellidoPaterno = apellidoPaterno;
