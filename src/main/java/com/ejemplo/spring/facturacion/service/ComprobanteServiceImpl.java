@@ -57,13 +57,13 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		}).collect(Collectors.toList());
 	}
 	
-	public void guardarComprobante(Integer numeroComprobante, String estadoComprobante, Float montoTotal)
+	/*public void guardarComprobante(Integer numeroComprobante, String estadoComprobante, Float montoTotal)
 	{
 		//Integer idComprobante, Integer numeroComprobante, Cliente cliente, Sede sede, List<DetalleComprobante> detallecomprobante, Date fechaCreacion, String estadoComprobante, Date fechaEmision, Float montoTotal
-		Comprobante comprobante = new Comprobante(numeroComprobante, null, null, null, null, estadoComprobante, null, montoTotal);
+		//Comprobante comprobante = new Comprobante(numeroComprobante, null, null, null, null, estadoComprobante, null, montoTotal);
 		
-		System.out.println(comprobante.toString());
+		//System.out.println(comprobante.toString());
 		
 		comprobanteDao.guardarComprobante(comprobante);
-	}
+	}*/
 }

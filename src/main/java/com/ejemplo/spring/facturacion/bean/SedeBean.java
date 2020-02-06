@@ -6,17 +6,17 @@ public class SedeBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer ID;
+	private Long ID;
 	private String nombreSede;
 	private String direccionSede;
 	private String telefonoSede;
 	
 	
-	public Integer getID() {
+	public Long getID() {
 		return ID;
 	}
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Long iD) {
+		this.ID = iD;
 	}
 	public String getNombreSede() {
 		return nombreSede;

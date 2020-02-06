@@ -6,15 +6,15 @@ public class LibroBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer ID;
+	private Long ID;
 	private String nombreLibro;
-	private Float precioLibro;
+	private Double precioLibro;
 	
 	
-	public Integer getID() {
+	public Long getID() {
 		return ID;
 	}
-	public void setID(Integer iD) {
+	public void setID(Long iD) {
 		ID = iD;
 	}
 	public String getNombreLibro() {
@@ -23,10 +23,10 @@ public class LibroBean implements Serializable
 	public void setNombreLibro(String nombreLibro) {
 		this.nombreLibro = nombreLibro;
 	}
-	public Float getPrecioLibro() {
+	public Double getPrecioLibro() {
 		return precioLibro;
 	}
-	public void setPrecioLibro(Float precioLibro) {
+	public void setPrecioLibro(Double precioLibro) {
 		this.precioLibro = precioLibro;
 	}	
 	

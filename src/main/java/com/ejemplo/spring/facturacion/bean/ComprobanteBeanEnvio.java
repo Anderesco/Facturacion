@@ -2,22 +2,22 @@ package com.ejemplo.spring.facturacion.bean;
 
 public class ComprobanteBeanEnvio 
 {
-	private Integer ID;
-	private Integer numeroComprobante;
+	private Long ID;
+	private Double numeroComprobante;
 	private String nombreCliente;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
 	private String DNI;
 	private String RUC;
-	private Float montototal;
+	private Double montototal;
 	private String estado;
 	private String sede;
 	
 	
 	
-	public ComprobanteBeanEnvio(Integer iD, Integer numeroComprobante, String nombreCliente, String apellidoPaterno,
-			String apellidoMaterno, String dNI, String rUC, Float montototal, String estado, String sede) {
-		ID = iD;
+	public ComprobanteBeanEnvio(Long iD, Double numeroComprobante, String nombreCliente, String apellidoPaterno,
+			String apellidoMaterno, String dNI, String rUC, Double montototal, String estado, String sede) {
+		this.ID = iD;
 		this.numeroComprobante = numeroComprobante;
 		this.nombreCliente = nombreCliente;
 		this.apellidoPaterno = apellidoPaterno;
@@ -29,16 +29,16 @@ public class ComprobanteBeanEnvio
 		this.sede = sede;
 	}
 	
-	public Integer getID() {
+	public Long getID() {
 		return ID;
 	}
-	public void setID(Integer iD) {
+	public void setID(Long iD) {
 		ID = iD;
 	}
-	public Integer getNumeroComprobante() {
+	public Double getNumeroComprobante() {
 		return numeroComprobante;
 	}
-	public void setNumeroComprobante(Integer numeroComprobante) {
+	public void setNumeroComprobante(Double numeroComprobante) {
 		this.numeroComprobante = numeroComprobante;
 	}
 	public String getNombreCliente() {
@@ -71,10 +71,10 @@ public class ComprobanteBeanEnvio
 	public void setRUC(String rUC) {
 		RUC = rUC;
 	}
-	public Float getMontototal() {
+	public Double getMontototal() {
 		return montototal;
 	}
-	public void setMontototal(Float montototal) {
+	public void setMontototal(Double montototal) {
 		this.montototal = montototal;
 	}
 	public String getEstado() {

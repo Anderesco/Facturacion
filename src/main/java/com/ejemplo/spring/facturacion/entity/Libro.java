@@ -25,7 +25,7 @@ public class Libro
 	private String nombreLibro;
 	
 	@Column(name = "PrecioUnitario")
-	private Float precioLibro;
+	private Double precioLibro;
 	
 	@Column(name = "Autor")
 	private String autorLibro;
@@ -43,7 +43,7 @@ public class Libro
 	}
 	
 
-	public Libro(String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro,
+	public Libro(String nombreLibro, Double precioLibro, String autorLibro, Integer anioLibro,
 			List<DetalleComprobante> detalleComprobante) {
 		this.nombreLibro = nombreLibro;
 		this.precioLibro = precioLibro;
@@ -79,11 +79,11 @@ public class Libro
 		this.nombreLibro = nombreLibro;
 	}
 
-	public Float getPrecioLibro() {
+	public Double getPrecioLibro() {
 		return precioLibro;
 	}
 
-	public void setPrecioLibro(Float precioLibro) {
+	public void setPrecioLibro(Double precioLibro) {
 		this.precioLibro = precioLibro;
 	}
 
