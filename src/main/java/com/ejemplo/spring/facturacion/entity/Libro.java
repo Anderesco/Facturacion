@@ -19,13 +19,13 @@ public class Libro
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idLibro;
+	private Integer idLibro;
 	
 	@Column(name = "Nombre")
 	private String nombreLibro;
 	
 	@Column(name = "PrecioUnitario")
-	private Double precioLibro;
+	private Float precioLibro;
 	
 	@Column(name = "Autor")
 	private String autorLibro;
@@ -43,7 +43,7 @@ public class Libro
 	}
 	
 
-	public Libro(String nombreLibro, Double precioLibro, String autorLibro, Integer anioLibro,
+	public Libro(String nombreLibro, Float precioLibro, String autorLibro, Integer anioLibro,
 			List<DetalleComprobante> detalleComprobante) {
 		this.nombreLibro = nombreLibro;
 		this.precioLibro = precioLibro;
@@ -63,11 +63,11 @@ public class Libro
 	}
 
 
-	public Long getIdLibro() {
+	public Integer getIdLibro() {
 		return idLibro;
 	}
 
-	public void setIdLibro(Long idLibro) {
+	public void setIdLibro(Integer idLibro) {
 		this.idLibro = idLibro;
 	}
 
@@ -79,11 +79,11 @@ public class Libro
 		this.nombreLibro = nombreLibro;
 	}
 
-	public Double getPrecioLibro() {
+	public Float getPrecioLibro() {
 		return precioLibro;
 	}
 
-	public void setPrecioLibro(Double precioLibro) {
+	public void setPrecioLibro(Float precioLibro) {
 		this.precioLibro = precioLibro;
 	}
 

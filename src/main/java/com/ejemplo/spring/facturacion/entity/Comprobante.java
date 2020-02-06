@@ -24,10 +24,10 @@ public class Comprobante
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idComprobante;
+	private Integer idComprobante;
 	
 	@Column(name = "NumeroComprobante")
-	private Double numeroComprobante;
+	private Integer numeroComprobante;
 	
 	@JoinColumn(name = "IDCliente")
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -51,7 +51,7 @@ public class Comprobante
 	private Date fechaEmision;
 	
 	@Column(name = "MontoTotal")
-	private Double montoTotal;
+	private Float montoTotal;
 
 	
 	public Comprobante() {
@@ -59,9 +59,9 @@ public class Comprobante
 	}
 
 	
-	public Comprobante(Double numeroComprobante, Cliente cliente, Sede sede,
+	public Comprobante(Integer numeroComprobante, Cliente cliente, Sede sede,
 			List<DetalleComprobante> detallecomprobante, Date fechaCreacion, String estadoComprobante,
-			Date fechaEmision, Double montoTotal) {
+			Date fechaEmision, Float montoTotal) {
 		this.numeroComprobante = numeroComprobante;
 		this.cliente = cliente;
 		this.sede = sede;
@@ -80,20 +80,20 @@ public class Comprobante
 		this.detallecomprobante = detallecomprobante;
 	}
 
-	public Long getIdComprobante() {
+	public Integer getIdComprobante() {
 		return idComprobante;
 	}
 
-	public void setIdComprobante(Long idComprobante) {
+	public void setIdComprobante(Integer idComprobante) {
 		this.idComprobante = idComprobante;
 	}
 
-	public Double getNumeroComprobante() {
+	public Integer getNumeroComprobante() {
 		return numeroComprobante;
 	}
 
-	public void setNumeroComprobante(Double numeroComprobante2) {
-		this.numeroComprobante = numeroComprobante2;
+	public void setNumeroComprobante(Integer numeroComprobante) {
+		this.numeroComprobante = numeroComprobante;
 	}
 
 	public Cliente getCliente() {
@@ -136,11 +136,11 @@ public class Comprobante
 		this.fechaEmision = fechaEmision;
 	}
 
-	public Double getMontoTotal() {
+	public Float getMontoTotal() {
 		return montoTotal;
 	}
 
-	public void setMontoTotal(Double montoTotal) {
+	public void setMontoTotal(Float montoTotal) {
 		this.montoTotal = montoTotal;
 	}
 

@@ -6,7 +6,7 @@ public class ClienteBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Long ID;
+	private Integer ID;
 	private String nombreCliente;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
@@ -14,10 +14,10 @@ public class ClienteBean implements Serializable
 	private String RUC;
 	
 	
-	public Long getID() {
+	public Integer getID() {
 		return ID;
 	}
-	public void setID(Long iD) {
+	public void setID(Integer iD) {
 		ID = iD;
 	}
 	public String getNombreCliente() {

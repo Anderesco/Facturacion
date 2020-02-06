@@ -19,7 +19,7 @@ public class Cliente
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idCliente;
+	private Integer idCliente;
 	
 	@Column(name = "Nombre")
 	private String nombreCliente;
@@ -72,11 +72,11 @@ public class Cliente
 		this.comprobante = comprobante;
 	}
 
-	public Long getIdCliente() {
+	public Integer getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(Long idCliente) {
+	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
 	}
 

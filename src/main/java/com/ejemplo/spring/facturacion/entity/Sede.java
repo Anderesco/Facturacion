@@ -19,7 +19,7 @@ public class Sede
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idSede;
+	private Integer idSede;
 	
 	@Column(name = "Nombre")
 	private String nombreSede;
@@ -54,11 +54,11 @@ public class Sede
 		this.comprobante = comprobante;
 	}
 
-	public Long getIdSede() {
+	public Integer getIdSede() {
 		return idSede;
 	}
 
-	public void setIdSede(Long idSede) {
+	public void setIdSede(Integer idSede) {
 		this.idSede = idSede;
 	}
 

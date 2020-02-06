@@ -17,7 +17,7 @@ public class DetalleComprobante
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idDetalle;
+	private Integer idDetalle;
 	
 	@JoinColumn(name = "IDComprobante")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -63,11 +63,11 @@ public class DetalleComprobante
 		this.comprobante = comprobante;
 	}
 
-	public Long getIdDetalle() {
+	public Integer getIdDetalle() {
 		return idDetalle;
 	}
 
-	public void setIdDetalle(Long idDetalle) {
+	public void setIdDetalle(Integer idDetalle) {
 		this.idDetalle = idDetalle;
 	}
 

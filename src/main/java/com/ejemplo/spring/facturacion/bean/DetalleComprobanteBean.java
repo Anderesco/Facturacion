@@ -6,21 +6,21 @@ public class DetalleComprobanteBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Long ID;
+	private Integer ID;
 	private String nombreLibro;
 	private Integer cantidadLibro;
-	private Double precioUnitario;
+	private Float precioUnitario;
 	
-	public Double getPrecioUnitario() {
+	public Float getPrecioUnitario() {
 		return precioUnitario;
 	}
-	public void setPrecioUnitario(Double precioUnitario) {
+	public void setPrecioUnitario(Float precioUnitario) {
 		this.precioUnitario = precioUnitario;
 	}
-	public Long getID() {
+	public Integer getID() {
 		return ID;
 	}
-	public void setID(Long iD) {
+	public void setID(Integer iD) {
 		ID = iD;
 	}
 	public String getNombreLibro() {

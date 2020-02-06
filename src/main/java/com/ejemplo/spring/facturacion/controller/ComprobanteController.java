@@ -99,7 +99,7 @@ public class ComprobanteController
 	@ResponseBody
 	@RequestMapping("prueba-json-envio")				   
 	public List<ComprobanteBeanEnvio> listarComprobantesEnvio() {
-		ComprobanteBeanEnvio envio = new ComprobanteBeanEnvio((long)1, (double)1000, "Carol", "Martinez", "Corzo", "70057321", null, 2000.00 , "Pendiente", "SJL");
+		ComprobanteBeanEnvio envio = new ComprobanteBeanEnvio(1, 1000, "Carol", "Martinez", "Corzo", "70057321", null, (float)2000.00 , "Pendiente", "SJL");
 		List<ComprobanteBeanEnvio> comprobanteEnvio = new ArrayList<ComprobanteBeanEnvio>();
 		comprobanteEnvio.add(envio);
 		System.out.println("Lista: "+ comprobanteEnvio.toString());
