@@ -1,6 +1,8 @@
 package com.ejemplo.spring.facturacion.bean;
 
 import java.io.Serializable;
+import java.util.List;
+
 
 public class ComprobanteBean implements Serializable
 {
@@ -16,6 +18,7 @@ public class ComprobanteBean implements Serializable
 	private Float montototal;
 	private String estado;
 	private String sede;
+	private List<DetalleComprobanteBean> detalleComprobante;
 	
 	
 	public String getSede() {
@@ -79,13 +82,19 @@ public class ComprobanteBean implements Serializable
 	public void setMontototal(Float montototal) {
 		this.montototal = montototal;
 	}
+	public List<DetalleComprobanteBean> getDetalleComprobante() {
+		return detalleComprobante;
+	}
+	public void setDetalleComprobante(List<DetalleComprobanteBean> detalleComprobante) {
+		this.detalleComprobante = detalleComprobante;
+	}
+	
 	@Override
 	public String toString() {
 		return "ComprobanteBean [ID=" + ID + ", numeroComprobante=" + numeroComprobante + ", nombreCliente="
 				+ nombreCliente + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno
 				+ ", DNI=" + DNI + ", RUC=" + RUC + ", montototal=" + montototal + ", estado=" + estado + ", sede="
-				+ sede + "]";
+				+ sede + ", detalleComprobante=" + detalleComprobante + "]";
 	}
-	
 	
 }

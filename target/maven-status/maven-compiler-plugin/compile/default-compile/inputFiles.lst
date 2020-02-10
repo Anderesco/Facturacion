@@ -1,3 +1,4 @@
+D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\JSONRecibidoBean.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\controller\ComprobanteController.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\entity\Comprobante.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\SedeService.java
@@ -13,6 +14,7 @@ D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\ClienteBean.jav
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\ClienteService.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\util\HibernateUtil.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\entity\Cliente.java
+D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\EmisionComprobanteService.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\LibroBean.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\service\SedeServiceImpl.java
 D:\Facturacion\src\main\java\com\ejemplo\spring\facturacion\bean\SedeBean.java

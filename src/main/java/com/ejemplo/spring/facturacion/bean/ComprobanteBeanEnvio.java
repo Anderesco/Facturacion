@@ -12,11 +12,14 @@ public class ComprobanteBeanEnvio
 	private Float montototal;
 	private String estado;
 	private String sede;
+	private Object libro;
 	
 	
 	
 	public ComprobanteBeanEnvio(Integer iD, Integer numeroComprobante, String nombreCliente, String apellidoPaterno,
-			String apellidoMaterno, String dNI, String rUC, Float montototal, String estado, String sede) {
+			String apellidoMaterno, String dNI, String rUC, Float montototal, String estado, String sede,
+			Object libro) {
+		super();
 		ID = iD;
 		this.numeroComprobante = numeroComprobante;
 		this.nombreCliente = nombreCliente;
@@ -27,8 +30,8 @@ public class ComprobanteBeanEnvio
 		this.montototal = montototal;
 		this.estado = estado;
 		this.sede = sede;
+		this.libro = libro;
 	}
-	
 	public Integer getID() {
 		return ID;
 	}
@@ -90,13 +93,23 @@ public class ComprobanteBeanEnvio
 		this.sede = sede;
 	}
 
+	public Object getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Object libro) {
+		this.libro = libro;
+	}
+
 	@Override
 	public String toString() {
 		return "ComprobanteBeanEnvio [ID=" + ID + ", numeroComprobante=" + numeroComprobante + ", nombreCliente="
 				+ nombreCliente + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno
 				+ ", DNI=" + DNI + ", RUC=" + RUC + ", montototal=" + montototal + ", estado=" + estado + ", sede="
-				+ sede + "]";
+				+ sede + ", libro=" + libro + "]";
 	}
+
+	
 	
 	
 }

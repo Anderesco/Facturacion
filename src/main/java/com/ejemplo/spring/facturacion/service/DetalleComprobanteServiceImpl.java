@@ -16,13 +16,14 @@ public class DetalleComprobanteServiceImpl implements DetalleComprobanteService
 	DetalleComprobanteDao detalleComprobanteDao;
 	
 	@Override
-	public List<DetalleComprobanteBean> guardarDetalle() {
+	public List<DetalleComprobanteBean> mostrarDetalle(Integer ID) {
 		
-		return detalleComprobanteDao.mostrarDetalleComprobante().stream().map(detalleComprobante -> {
+		return detalleComprobanteDao.mostrarDetalleComprobante().stream().filter(detalleComprobante -> detalleComprobante.getComprobante().getIdComprobante() == ID).map(detalleComprobante -> {
 			DetalleComprobanteBean detalleComprobanteBean = new DetalleComprobanteBean();
 			detalleComprobanteBean.setID(detalleComprobante.getIdDetalle());
 			detalleComprobanteBean.setCantidadLibro(detalleComprobante.getCantidadLibroDetalle());
 			detalleComprobanteBean.setNombreLibro(detalleComprobante.getLibro().getNombreLibro());
+			detalleComprobanteBean.setPrecioUnitario(detalleComprobante.getLibro().getPrecioLibro());
 			
 			return detalleComprobanteBean;
 		}).collect(Collectors.toList());

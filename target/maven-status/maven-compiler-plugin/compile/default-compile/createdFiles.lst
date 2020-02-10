@@ -12,11 +12,13 @@ com\ejemplo\spring\facturacion\util\HibernateUtil.class
 com\ejemplo\spring\facturacion\bean\LibroBean.class
 com\ejemplo\spring\facturacion\bean\ComprobanteBeanEnvio.class
 com\ejemplo\spring\facturacion\service\DetalleComprobanteServiceImpl.class
+com\ejemplo\spring\facturacion\bean\JSONRecibidoBean.class
 com\ejemplo\spring\facturacion\entity\Comprobante.class
 com\ejemplo\spring\facturacion\service\ClienteService.class
 com\ejemplo\spring\facturacion\entity\DetalleComprobante.class
 com\ejemplo\spring\facturacion\util\ObtenerJSONURL.class
 com\ejemplo\spring\facturacion\dao\ClienteDao.class
+com\ejemplo\spring\facturacion\service\EmisionComprobanteService.class
 com\ejemplo\spring\facturacion\service\ComprobanteService.class
 com\ejemplo\spring\facturacion\dao\SedeDao.class
 com\ejemplo\spring\facturacion\service\ClienteServiceImpl.class
