@@ -23,12 +23,12 @@ public class ObtenerJSONURL
 	JSONRecibidoBean jsonRecibido = new JSONRecibidoBean();
 	JSONRecibidoDetalleBean[] jsonDetalleArray;
 	JSONRecibidoDetalleBean jsonDetalle;
-	List<JSONRecibidoDetalleBean> listaDetalle = new ArrayList<JSONRecibidoDetalleBean>();
+	//List<JSONRecibidoDetalleBean> listaDetalle = new ArrayList<JSONRecibidoDetalleBean>();
 	JSONObject objectorecibido;
 	JSONObject objectorecibido2;
 	
-	public JSONRecibidoBean ObtenerJSON () 
-	{
+	public JSONRecibidoBean ObtenerJSON () {
+		List<JSONRecibidoDetalleBean> listaDetalle = new ArrayList<JSONRecibidoDetalleBean>();
         try 
         {        
             URL url = new URL("http://localhost:8080/prueba-json-envio");
@@ -92,6 +92,9 @@ public class ObtenerJSONURL
         catch (FileNotFoundException e) { e.printStackTrace();} 
         catch (IOException e) { e.printStackTrace();} 
         catch (ParseException e) {e.printStackTrace();}
+        
+        //System.out.println("Dealle canidad: "+listaDetalle.size());
+        //listaDetalle.clear();
         
         return jsonRecibido;
     }

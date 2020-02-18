@@ -104,4 +104,11 @@ public class ComprobanteController
 		return comprobanteEnvio;
 	}
 	
+	@ResponseBody
+	@RequestMapping("jsonURL")
+	public JSONRecibidoBean obtenerJsonRecibido ()
+	{
+		ObtenerJSONURL obtener = new ObtenerJSONURL();
+		return obtener.ObtenerJSON();
+	}
 }

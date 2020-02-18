@@ -53,6 +53,7 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	@Override
 	public List<ComprobanteBean> mostrarComprobante(Integer ID) {	
 		return comprobanteDao.mostrarComprobante().stream().filter(comprobante -> comprobante.getIdComprobante() == ID).map(comprobante -> {
+			System.out.println(comprobante.getCliente());
 			ComprobanteBean comprobanteBean = new ComprobanteBean();
 			comprobanteBean.setID(comprobante.getIdComprobante());
 			comprobanteBean.setNumeroComprobante(comprobante.getNumeroComprobante());
@@ -93,6 +94,8 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	{
 		jsonRecibidoBean = jsonRecibido.ObtenerJSON();
 				
+		System.out.println("Cantidad Libros a guardar que trae: " + jsonRecibidoBean.getDetalle().size());
+		
 		Comprobante comprobante = new Comprobante();
 		Sede sede = new Sede();
 		Cliente cliente = new Cliente();
@@ -118,6 +121,7 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		
 		comprobante.setIdComprobante(comprobanteDao.guardarComprobante(comprobante));
 		
+		System.out.println("Cantidad Libros a guardar: " + jsonRecibidoBean.getDetalle().size());
 		jsonRecibidoBean.getDetalle().forEach(libro -> {
 			Libro libroEntity = new Libro();
 			libroEntity.setNombreLibro(libro.getNombreLibro());

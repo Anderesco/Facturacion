@@ -25,7 +25,7 @@ public class DetalleComprobante
 	private Comprobante comprobante;
 	
 	@JoinColumn(name = "IDLibro")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Libro libro;
 	
 	@Column(name = "Cantidad")
