@@ -1,5 +1,8 @@
 package com.ejemplo.spring.facturacion.bean;
 
+import java.util.List;
+
+
 public class ComprobanteBeanEnvio 
 {
 	private Integer ID;
@@ -12,13 +15,13 @@ public class ComprobanteBeanEnvio
 	private Float montototal;
 	private String estado;
 	private String sede;
-	private Object libro;
+	private List<DetalleComprobanteBean> detalle;
 	
 	
 	
 	public ComprobanteBeanEnvio(Integer iD, Integer numeroComprobante, String nombreCliente, String apellidoPaterno,
 			String apellidoMaterno, String dNI, String rUC, Float montototal, String estado, String sede,
-			Object libro) {
+			List<DetalleComprobanteBean> detalle) {
 		super();
 		ID = iD;
 		this.numeroComprobante = numeroComprobante;
@@ -30,7 +33,14 @@ public class ComprobanteBeanEnvio
 		this.montototal = montototal;
 		this.estado = estado;
 		this.sede = sede;
-		this.libro = libro;
+		this.detalle = detalle;
+	}
+	
+	public List<DetalleComprobanteBean> getDetalle() {
+		return detalle;
+	}
+	public void setDetalle(List<DetalleComprobanteBean> detalle) {
+		this.detalle = detalle;
 	}
 	public Integer getID() {
 		return ID;
@@ -93,21 +103,15 @@ public class ComprobanteBeanEnvio
 		this.sede = sede;
 	}
 
-	public Object getLibro() {
-		return libro;
-	}
-
-	public void setLibro(Object libro) {
-		this.libro = libro;
-	}
-
 	@Override
 	public String toString() {
 		return "ComprobanteBeanEnvio [ID=" + ID + ", numeroComprobante=" + numeroComprobante + ", nombreCliente="
 				+ nombreCliente + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno
 				+ ", DNI=" + DNI + ", RUC=" + RUC + ", montototal=" + montototal + ", estado=" + estado + ", sede="
-				+ sede + ", libro=" + libro + "]";
+				+ sede + ", detalle=" + detalle + "]";
 	}
+
+	
 
 	
 	

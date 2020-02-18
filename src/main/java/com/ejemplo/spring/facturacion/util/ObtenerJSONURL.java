@@ -6,20 +6,29 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.ejemplo.spring.facturacion.bean.JSONRecibidoBean;
+import com.ejemplo.spring.facturacion.bean.JSONRecibidoDetalleBean;
+
 public class ObtenerJSONURL 
 {
-	public static void main(String[] args) throws JSONException 
+	JSONParser parser = new JSONParser();
+	JSONRecibidoBean jsonRecibido = new JSONRecibidoBean();
+	JSONRecibidoDetalleBean[] jsonDetalleArray;
+	JSONRecibidoDetalleBean jsonDetalle;
+	List<JSONRecibidoDetalleBean> listaDetalle = new ArrayList<JSONRecibidoDetalleBean>();
+	JSONObject objectorecibido;
+	JSONObject objectorecibido2;
+	
+	public JSONRecibidoBean ObtenerJSON () 
 	{
-        
-		JSONParser parser = new JSONParser();
-
         try 
         {        
             URL url = new URL("http://localhost:8080/prueba-json-envio");
@@ -40,27 +49,41 @@ public class ObtenerJSONURL
                 for (Object objeto : arrayJson) 
                 {
                 	System.out.println("objeto:" + objeto);
-                    JSONObject objectorecibido =  (JSONObject) objeto;
+                    objectorecibido =  (JSONObject) objeto;
                     
-                    Long id = (Long) objectorecibido.get("id");
-                    String nombre = (String) objectorecibido.get("nombreCliente");
-                    String apellidoPaterno = (String) objectorecibido.get("apellidoPaterno");
-                    String apellidoMaterno = (String) objectorecibido.get("apellidoMaterno");
-                    String DNI = (String) objectorecibido.get("dni");
-                    String RUC = (String) objectorecibido.get("ruc");
-                    Double monto = (Double) objectorecibido.get("montototal");
-                    String estado = (String) objectorecibido.get("estado");
-                    String sede = (String) objectorecibido.get("sede");
+                    jsonRecibido.setNombre((String) objectorecibido.get("nombreCliente"));
+                    jsonRecibido.setApellidoPaterno((String) objectorecibido.get("apellidoPaterno"));
+                    jsonRecibido.setApellidoMaterno((String) objectorecibido.get("apellidoMaterno"));
+                    jsonRecibido.setDNI((String) objectorecibido.get("dni"));
+                    jsonRecibido.setRUC((String) objectorecibido.get("ruc"));
+                    jsonRecibido.setMonto((Double) objectorecibido.get("montototal"));
+                    jsonRecibido.setEstado((String) objectorecibido.get("estado"));
+                    jsonRecibido.setSede((String) objectorecibido.get("sede"));
+                    jsonRecibido.setNumeroComprobante((Long) objectorecibido.get("numeroComprobante"));
                     
-                    System.out.println("ID : " + id);
-                    System.out.println("Cliente : " + nombre);
-                    System.out.println("Apellido Paterno : " + apellidoPaterno);
-                    System.out.println("Apellido Materno : " + apellidoMaterno);
-                    System.out.println("DNI : " + DNI);
-                    System.out.println("RUC : " + RUC);
-                    System.out.println("Monto : " + monto);
-                    System.out.println("Estado : " + estado);
-                    System.out.println("Sede : " + sede);
+                    JSONArray detalleJson = (JSONArray) objectorecibido.get("detalle");
+
+                    jsonDetalleArray = new JSONRecibidoDetalleBean[detalleJson.size()];
+                    
+                    System.out.println("Length: " + jsonDetalleArray.length);
+                    Object[] objeto2 = new Object[jsonDetalleArray.length];
+                    
+                    for(int i = 0; i < jsonDetalleArray.length; i++)
+                    {
+                    	objeto2[i] = (Object) detalleJson.get(i);
+                    	
+                    	System.out.println("Objeto2: " + objeto2[i]);
+                    	
+                    	objectorecibido2 = (JSONObject) detalleJson.get(i);
+                    	
+                    	jsonDetalleArray[i] = new JSONRecibidoDetalleBean((String) objectorecibido2.get("nombreLibro"), 
+                    													  (Long) objectorecibido2.get("cantidadLibro"), 
+                    													  (Double) objectorecibido2.get("precioUnitario"));
+                    	
+                    	listaDetalle.add(jsonDetalleArray[i]);
+                    } 
+                    
+                    jsonRecibido.setDetalle(listaDetalle);
                 }
             }
             
@@ -68,6 +91,10 @@ public class ObtenerJSONURL
         } 
         catch (FileNotFoundException e) { e.printStackTrace();} 
         catch (IOException e) { e.printStackTrace();} 
-        catch (ParseException e) {e.printStackTrace();}  
-    } 
+        catch (ParseException e) {e.printStackTrace();}
+        
+        return jsonRecibido;
+    }
+	
+
 }

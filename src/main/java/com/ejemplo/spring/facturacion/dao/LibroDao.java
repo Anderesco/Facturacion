@@ -12,17 +12,16 @@ import com.ejemplo.spring.facturacion.util.HibernateUtil;
 @Component
 public class LibroDao 
 {
-	public void guardarLibro(Libro libro) 
+	public Integer guardarLibro(Libro libro) 
 	{
         Transaction transaction = null;
+        Integer codigo = 0;
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) {
             
         	// Inicia la transaccion
             transaction = session.beginTransaction();
-            
             // Guarda el objeto Usuario
-            session.save(libro);
-            
+            codigo = (int) session.save(libro);
             // Realizar transaccion
             transaction.commit();    
             
@@ -36,6 +35,8 @@ public class LibroDao
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+        
+        return codigo;
     }
     public List<Libro> mostrarLibro() 
     {

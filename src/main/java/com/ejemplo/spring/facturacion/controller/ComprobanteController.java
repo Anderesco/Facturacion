@@ -1,6 +1,7 @@
 package com.ejemplo.spring.facturacion.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -9,15 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
+import com.ejemplo.spring.facturacion.bean.ComprobanteBeanEnvio;
+import com.ejemplo.spring.facturacion.bean.DetalleComprobanteBean;
+import com.ejemplo.spring.facturacion.bean.JSONRecibidoBean;
 import com.ejemplo.spring.facturacion.service.ClienteServiceImpl;
 import com.ejemplo.spring.facturacion.service.ComprobanteServiceImpl;
 import com.ejemplo.spring.facturacion.service.DetalleComprobanteServiceImpl;
-import com.ejemplo.spring.facturacion.service.SedeServiceImpl;
+import com.ejemplo.spring.facturacion.util.ObtenerJSONURL;
 
 @Controller("/")
 public class ComprobanteController 
@@ -31,81 +34,74 @@ public class ComprobanteController
 	@Autowired
 	DetalleComprobanteServiceImpl detalleComprobanteServiceImpl;
 	
-	@Autowired
-	SedeServiceImpl sedeServiceImpl;
 	
-	@GetMapping("comprobante/{ID}")
-	public String MostrarComprobante(Model modelo, @PathVariable Integer ID) throws IOException, JSONException
+	ObtenerJSONURL obtener = new ObtenerJSONURL();
+	
+	//Vista
+	@GetMapping("comprobante")
+	public String MostrarComprobante(Model modelo) throws IOException, JSONException
 	{
-		List<ComprobanteBean> listaComprobanteBean = comprobanteServiceImpl.mostrarComprobante(ID);
-		comprobanteServiceImpl.mostrarComprobante(ID).forEach(com -> {
-			/*System.out.println("ID: " + com.getID());
-			System.out.println("Numero Comprobante: " + com.getNumeroComprobante());
-			System.out.println("NombreCliente: " + com.getNombreCliente());
-			System.out.println("Apellido Paterno: " + com.getApellidoPaterno());
-			System.out.println("Apellido Materno: " + com.getApellidoMaterno());
-			System.out.println("DNI: " + com.getDNI());
-			System.out.println("RUC: " + com.getRUC());
-			System.out.println("Monto total: " + com.getMontototal());
-			System.out.println("Estado: " + com.getEstado());
-			System.out.println("Sede:" + com.getSede());*/
+		List<ComprobanteBean> listaComprobanteBean = comprobanteServiceImpl.mostrarComprobanteTotal();
+		comprobanteServiceImpl.mostrarComprobanteTotal().forEach(com -> {
 			com.toString();
 		}); 
 		
-		/*clienteServiceImpl.guardarCliente().forEach(cliente -> {
-			System.out.println("Nombre : " + cliente.getNombreCliente());
-			System.out.println("Apellido Pat. : " + cliente.getApellidoPaterno());
-			System.out.println("Apellido Mat. :" + cliente.getApellidoMaterno());
-			System.out.println("DNI : " + cliente.getDNI());
-			System.out.println("RUC : " + cliente.getRUC());
-		});
-		
-		detalleComprobanteServiceImpl.guardarDetalle().forEach(detalle -> {
-			System.out.println("ID: " + detalle.getID());
-			System.out.println("Cantidad de Libros: " + detalle.getCantidadLibro());
-			System.out.println("Nombre Libro:" + detalle.getNombreLibro());
-		});*/
-		
-		/*sedeServiceImpl.guardarSede().forEach(sede -> {
-			System.out.println("ID" + sede.getID());
-			System.out.println("Nombre Sede: " + sede.getNombreSede());
-			System.out.println("Direccion: " + sede.getDireccionSede());
-			System.out.println("Telefono: " + sede.getTelefonoSede());
-		});
-		*/
-		
 		modelo.addAttribute("comprobanteBean", listaComprobanteBean);
-		
-		
+
 		return "Index";
 	}
 	
+	//GET
 	@ResponseBody
-	@RequestMapping("prueba-json/{ID}")				   
-	public List<ComprobanteBean> listarComprobantes(@PathVariable Integer ID) {
+	@RequestMapping("/comprobante/{ID}")				   
+	public List<ComprobanteBean> listarComprobantesPorUno(Model modelo, @PathVariable Integer ID) 
+	{
+		modelo.addAttribute("MostrarJSon", comprobanteServiceImpl.mostrarComprobante(ID));
 		
 		return comprobanteServiceImpl.mostrarComprobante(ID);
 	}
 	
-	
+	//GET
 	@ResponseBody
-	@RequestMapping("prueba-json-post")
-	public List<ComprobanteBean> ingresarComprobantes (@RequestBody ComprobanteBean comprobante)
-	{
-		System.out.println(comprobante.toString());
-		return comprobanteServiceImpl.mostrarComprobante(2);
+	@RequestMapping("comprobantesTotales")				   
+	public List<ComprobanteBean> listarComprobantesPorUno(Model modelo) 
+	{		
+		modelo.addAttribute("MostrarJSon", comprobanteServiceImpl.mostrarComprobanteTotal());
+		
+		return comprobanteServiceImpl.mostrarComprobanteTotal();
 	}
 	
-	/*@ResponseBody
+	//POST
+	@ResponseBody
+	@RequestMapping("guardarComprobante")
+	public JSONRecibidoBean ingresarComprobantes (JSONRecibidoBean comprobanteEnviado)
+	{
+		ObtenerJSONURL obtener = new ObtenerJSONURL();
+		comprobanteEnviado = obtener.ObtenerJSON();
+		comprobanteServiceImpl.guardarComprobante();
+		
+		return comprobanteEnviado;
+	}
+	
+	@ResponseBody
 	@RequestMapping("prueba-json-envio")				   
 	public List<ComprobanteBeanEnvio> listarComprobantesEnvio() 
 	{
-		//Object libros
-		//ComprobanteBeanEnvio envio = new ComprobanteBeanEnvio(1, 1000, "Carol", "Martinez", "Corzo", "70057321", null, (float)2000.00 , "Pendiente", "SJL");
+		DetalleComprobanteBean detalle1 = new DetalleComprobanteBean("La Catita", 2, (float) 20.00);
+		DetalleComprobanteBean detalle2 = new DetalleComprobanteBean("Ana Frank", 1, (float) 25.50);
+		DetalleComprobanteBean detalle3 = new DetalleComprobanteBean("Koi to Uso", 3, (float) 30.50);
+		List<DetalleComprobanteBean> listaDetalle = new ArrayList<DetalleComprobanteBean>();
+		
+		listaDetalle.add(detalle1);
+		listaDetalle.add(detalle2);
+		listaDetalle.add(detalle3);
+		
+		ComprobanteBeanEnvio envio = new ComprobanteBeanEnvio(1, 1000, "Carol", "Martinez", "Corzo", "70057321", null, (float)2000.00 , "Pendiente", "SJL", listaDetalle);
 		List<ComprobanteBeanEnvio> comprobanteEnvio = new ArrayList<ComprobanteBeanEnvio>();
 		comprobanteEnvio.add(envio);
 		System.out.println("Lista: "+ comprobanteEnvio.toString());
+		
 		return comprobanteEnvio;
-	}*/
+	}
 	
 }

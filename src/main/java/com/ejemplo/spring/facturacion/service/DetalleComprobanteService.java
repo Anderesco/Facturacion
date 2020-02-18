@@ -7,4 +7,5 @@ import com.ejemplo.spring.facturacion.bean.DetalleComprobanteBean;
 public interface DetalleComprobanteService 
 {
 	public List<DetalleComprobanteBean> mostrarDetalle(Integer ID);
+	public List<DetalleComprobanteBean> mostrarDetalleTotales();
 }

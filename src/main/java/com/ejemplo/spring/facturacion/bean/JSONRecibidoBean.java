@@ -1,8 +1,13 @@
 package com.ejemplo.spring.facturacion.bean;
 
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class JSONRecibidoBean 
 {
-	private Long id;
 	private String nombre;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
@@ -12,20 +17,21 @@ public class JSONRecibidoBean
 	private String estado;
 	private String sede;
 	private Long numeroComprobante;
+	private List<JSONRecibidoDetalleBean> detalle;
 	
 	
 	
+	public List<JSONRecibidoDetalleBean> getDetalle() {
+		return detalle;
+	}
+	public void setDetalle(List<JSONRecibidoDetalleBean> detalle) {
+		this.detalle = detalle;
+	}
 	public Long getNumeroComprobante() {
 		return numeroComprobante;
 	}
 	public void setNumeroComprobante(Long numeroComprobante) {
 		this.numeroComprobante = numeroComprobante;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -75,19 +81,14 @@ public class JSONRecibidoBean
 	public void setSede(String sede) {
 		this.sede = sede;
 	}
+	
 	@Override
 	public String toString() {
-		return "JSONRecibidoBean {id=" + id + 
-				", nombre=" + nombre + 
-				", apellidoPaterno=" + apellidoPaterno+ 
-				", apellidoMaterno=" + apellidoMaterno + 
-				", DNI=" + DNI + 
-				", RUC=" + RUC + 
-				", monto=" + monto + 
-				", estado=" + estado + 
-				", sede=" + sede + 
-				"}";
+		return "JSONRecibidoBean [nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno="
+				+ apellidoMaterno + ", DNI=" + DNI + ", RUC=" + RUC + ", monto=" + monto + ", estado=" + estado
+				+ ", sede=" + sede + ", numeroComprobante=" + numeroComprobante + ", detalle=" + detalle + "]";
 	}
+
 	
 	
 }

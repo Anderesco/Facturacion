@@ -25,12 +25,11 @@
                       <td th:text="${comprobanteBeans.numeroComprobante}"></td>
                       <td th:text="${comprobanteBeans.estado}"></td>
                       <td>
-                          <button type="button" class="btn boton-registrar btn-primary"> Generar </button>
-                          <button type="button" class="btn boton-registrar btn-success">
+	                      <button type="button" class="btn boton-registrar btn-primary"> Generar </button>
+                          <button type="button" th:onclick="|window.location.href='/prueba-json/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-success">
                               <span class="glyphicon glyphicon-eye-open"></span>
                           </button>
                       </td>
-                    </tr>
                     </tr>
                   </tbody>
                 </table>

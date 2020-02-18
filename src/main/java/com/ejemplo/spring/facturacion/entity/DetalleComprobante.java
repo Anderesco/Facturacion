@@ -1,8 +1,8 @@
 package com.ejemplo.spring.facturacion.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,11 +21,11 @@ public class DetalleComprobante
 	private Integer idDetalle;
 	
 	@JoinColumn(name = "IDComprobante")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Comprobante comprobante;
 	
 	@JoinColumn(name = "IDLibro")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Libro libro;
 	
 	@Column(name = "Cantidad")

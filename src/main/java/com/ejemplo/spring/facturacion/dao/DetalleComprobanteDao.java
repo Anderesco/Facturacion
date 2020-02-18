@@ -26,7 +26,7 @@ public class DetalleComprobanteDao
             // Realizar transaccion
             transaction.commit();    
             
-        } 
+        }  
         catch (Exception e) 
         {
         	/*
@@ -41,7 +41,7 @@ public class DetalleComprobanteDao
     {
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) 
         {
-            return session.createQuery("from DetalleComprobante", DetalleComprobante.class).list();
+            return session.createQuery("select det from DetalleComprobante det inner join det.libro libro ", DetalleComprobante.class).list();
         }
     }
     

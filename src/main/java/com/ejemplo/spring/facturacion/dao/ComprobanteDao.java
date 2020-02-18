@@ -12,16 +12,17 @@ import com.ejemplo.spring.facturacion.util.HibernateUtil;
 @Component
 public class ComprobanteDao 
 {
-	public void guardarComprobante(Comprobante comprobante) 
+	public Integer guardarComprobante(Comprobante comprobante) 
 	{
         Transaction transaction = null;
+        Integer codigo = 0;
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) {
             
         	// Inicia la transaccion
-            transaction = session.beginTransaction();
+            transaction = session.beginTransaction(); 
             
             // Guarda el objeto Usuario
-            session.save(comprobante);
+            codigo = (Integer) session.save(comprobante);
             
             // Realizar transaccion
             transaction.commit();    
@@ -36,18 +37,22 @@ public class ComprobanteDao
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+        
+        return codigo;
     }
     public List<Comprobante> mostrarComprobante() 
     {
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) 
         {
-            return session.createQuery("from Comprobante", Comprobante.class).list();
+            return session.createQuery("Select comprobante from Comprobante comprobante " +
+            						   "inner join comprobante.cliente cliente" +
+            						   "inner join comprobante.sede sede" 
+            						   , Comprobante.class).list();
         }
     }
     
-    public void actualizarComprobante(int id, Comprobante comprobante)
+    public void actualizarComprobante(Comprobante comprobante)
     {
-    	String convertir = String.valueOf(id);
     	Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) {
             
@@ -55,7 +60,7 @@ public class ComprobanteDao
             transaction = session.beginTransaction();
             
             // Modifica el objeto Usuario
-            session.update(convertir, comprobante);
+            session.update(comprobante);
             
             // Realizar transaccion
             transaction.commit();

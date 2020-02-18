@@ -11,6 +11,19 @@ public class DetalleComprobanteBean implements Serializable
 	private Integer cantidadLibro;
 	private Float precioUnitario;
 	
+
+	
+	public DetalleComprobanteBean() {
+		super();
+	}
+
+	public DetalleComprobanteBean(String nombreLibro, Integer cantidadLibro, Float precioUnitario) {
+		super();
+		this.nombreLibro = nombreLibro;
+		this.cantidadLibro = cantidadLibro;
+		this.precioUnitario = precioUnitario;
+	}
+	
 	public Float getPrecioUnitario() {
 		return precioUnitario;
 	}

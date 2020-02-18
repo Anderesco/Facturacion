@@ -3,9 +3,9 @@ package com.ejemplo.spring.facturacion.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,15 +30,15 @@ public class Comprobante
 	private Integer numeroComprobante;
 	
 	@JoinColumn(name = "IDCliente")
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 	
 	@JoinColumn(name = "IDSede")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Sede sede;
 	
 	@JoinColumn
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<DetalleComprobante> detallecomprobante;
 	
 	@Column(name = "FechaCreacion")

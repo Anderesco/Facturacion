@@ -7,5 +7,5 @@ import com.ejemplo.spring.facturacion.bean.LibroBean;
 
 public interface LibroService 
 {
-	public List<LibroBean> guardarLibro();
+	public List<LibroBean> mostrarLibro();
 }

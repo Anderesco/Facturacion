@@ -1,5 +1,6 @@
 package com.ejemplo.spring.facturacion.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,7 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
+import com.ejemplo.spring.facturacion.bean.JSONRecibidoBean;
+import com.ejemplo.spring.facturacion.dao.ClienteDao;
 import com.ejemplo.spring.facturacion.dao.ComprobanteDao;
+import com.ejemplo.spring.facturacion.dao.DetalleComprobanteDao;
+import com.ejemplo.spring.facturacion.dao.LibroDao;
+import com.ejemplo.spring.facturacion.dao.SedeDao;
+import com.ejemplo.spring.facturacion.entity.Cliente;
+import com.ejemplo.spring.facturacion.entity.Comprobante;
+import com.ejemplo.spring.facturacion.entity.DetalleComprobante;
+import com.ejemplo.spring.facturacion.entity.Libro;
+import com.ejemplo.spring.facturacion.entity.Sede;
+import com.ejemplo.spring.facturacion.util.ObtenerJSONURL;
 
 @Component
 public class ComprobanteServiceImpl implements ComprobanteService
@@ -17,7 +29,26 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	ComprobanteDao comprobanteDao;
 	
 	@Autowired
+	DetalleComprobanteDao detalleComprobanteDao;
+	
+	@Autowired
 	DetalleComprobanteServiceImpl detalleComprobante;
+	
+	@Autowired
+	JSONRecibidoBean jsonRecibidoBean;
+	
+	@Autowired
+	LibroDao libroDao;
+	
+	@Autowired
+	ClienteDao clienteDao;
+	
+	@Autowired
+	SedeDao sedeDao;
+	
+	ObtenerJSONURL jsonRecibido = new ObtenerJSONURL();
+	
+	Date fechaActual = new Date();
 	
 	@Override
 	public List<ComprobanteBean> mostrarComprobante(Integer ID) {	
@@ -39,13 +70,70 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		}).collect(Collectors.toList());
 	}
 	
-	/*public void guardarComprobante(Integer numeroComprobante, String estadoComprobante, Float montoTotal)
+	@Override
+	public List<ComprobanteBean> mostrarComprobanteTotal() {	
+		return comprobanteDao.mostrarComprobante().stream().map(comprobante -> {
+			ComprobanteBean comprobanteBean = new ComprobanteBean();
+			comprobanteBean.setID(comprobante.getIdComprobante());
+			comprobanteBean.setNumeroComprobante(comprobante.getNumeroComprobante());
+			comprobanteBean.setNombreCliente(comprobante.getCliente().getNombreCliente());
+			comprobanteBean.setApellidoPaterno(comprobante.getCliente().getApellidoPaternoCliente());
+			comprobanteBean.setApellidoMaterno(comprobante.getCliente().getApellidoMaternoCliente());
+			comprobanteBean.setDNI(comprobante.getCliente().getDniCliente());
+			comprobanteBean.setRUC(comprobante.getCliente().getRucCliente());
+			comprobanteBean.setMontototal(comprobante.getMontoTotal());
+			comprobanteBean.setEstado(comprobante.getEstadoComprobante());
+			comprobanteBean.setSede(comprobante.getSede().getNombreSede());
+			
+			return comprobanteBean;
+		}).collect(Collectors.toList());
+	}
+	
+	public Comprobante guardarComprobante()
 	{
-		//Integer idComprobante, Integer numeroComprobante, Cliente cliente, Sede sede, List<DetalleComprobante> detallecomprobante, Date fechaCreacion, String estadoComprobante, Date fechaEmision, Float montoTotal
-		//Comprobante comprobante = new Comprobante(numeroComprobante, null, null, null, null, estadoComprobante, null, montoTotal);
+		jsonRecibidoBean = jsonRecibido.ObtenerJSON();
+				
+		Comprobante comprobante = new Comprobante();
+		Sede sede = new Sede();
+		Cliente cliente = new Cliente();
 		
-		//System.out.println(comprobante.toString());
+		sede.setNombreSede(jsonRecibidoBean.getSede());
+		sedeDao.guardarSede(sede);
 		
-		comprobanteDao.guardarComprobante(comprobante);
-	}*/
+		cliente.setNombreCliente(jsonRecibidoBean.getNombre());
+		cliente.setApellidoPaternoCliente(jsonRecibidoBean.getApellidoPaterno());
+		cliente.setApellidoMaternoCliente(jsonRecibidoBean.getApellidoMaterno());
+		cliente.setDniCliente(jsonRecibidoBean.getDNI());
+		cliente.setRucCliente(jsonRecibidoBean.getRUC());
+		
+		clienteDao.guardarCliente(cliente);
+		
+		comprobante.setEstadoComprobante(jsonRecibidoBean.getEstado());
+		comprobante.setNumeroComprobante(Integer.parseInt(String.valueOf(jsonRecibidoBean.getNumeroComprobante())));
+		comprobante.setMontoTotal(Float.parseFloat(String.valueOf(jsonRecibidoBean.getMonto())));
+		comprobante.setSede(sede);
+		comprobante.setCliente(cliente);
+		comprobante.setFechaCreacion(fechaActual);
+		comprobante.setFechaEmision(fechaActual);
+		
+		comprobante.setIdComprobante(comprobanteDao.guardarComprobante(comprobante));
+		
+		jsonRecibidoBean.getDetalle().forEach(libro -> {
+			Libro libroEntity = new Libro();
+			libroEntity.setNombreLibro(libro.getNombreLibro());
+			libroEntity.setPrecioLibro(Float.parseFloat(String.valueOf(libro.getPrecioLibro())));
+			
+			libroEntity.setIdLibro(libroDao.guardarLibro(libroEntity));
+			
+			DetalleComprobante detalleComprobante = new DetalleComprobante();
+			detalleComprobante.setLibro(libroEntity);
+			detalleComprobante.setCantidadLibroDetalle( Integer.parseInt(String.valueOf(libro.getCantidadLibro())));
+			detalleComprobante.setComprobante(comprobante);
+			
+			detalleComprobanteDao.guardarDetalleComprobante(detalleComprobante);
+		});
+		
+		return comprobante;
+	}
+
 }

@@ -2,9 +2,9 @@ package com.ejemplo.spring.facturacion.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +31,7 @@ public class Sede
 	private String telefonoSede;
 
 	@JoinColumn
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Comprobante> comprobante;
 	
 	public Sede() {
