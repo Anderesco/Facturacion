@@ -53,7 +53,6 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	@Override
 	public List<ComprobanteBean> mostrarComprobante(Integer ID) {	
 		return comprobanteDao.mostrarComprobante().stream().filter(comprobante -> comprobante.getIdComprobante() == ID).map(comprobante -> {
-			System.out.println(comprobante.getCliente());
 			ComprobanteBean comprobanteBean = new ComprobanteBean();
 			comprobanteBean.setID(comprobante.getIdComprobante());
 			comprobanteBean.setNumeroComprobante(comprobante.getNumeroComprobante());

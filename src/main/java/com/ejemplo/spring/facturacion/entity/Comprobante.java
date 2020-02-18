@@ -30,11 +30,11 @@ public class Comprobante
 	private Integer numeroComprobante;
 	
 	@JoinColumn(name = "IDCliente")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Cliente cliente;
 	
 	@JoinColumn(name = "IDSede")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Sede sede;
 	
 	@JoinColumn

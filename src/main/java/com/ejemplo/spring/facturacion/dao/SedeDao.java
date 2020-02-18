@@ -2,6 +2,8 @@ package com.ejemplo.spring.facturacion.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
@@ -10,6 +12,7 @@ import com.ejemplo.spring.facturacion.entity.Sede;
 import com.ejemplo.spring.facturacion.util.HibernateUtil;
 
 @Component
+@Transactional
 public class SedeDao 
 {
 	public Integer guardarSede(Sede sede) 
