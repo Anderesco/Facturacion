@@ -44,7 +44,7 @@ CREATE TABLE DetalleComprobante
 (
   ID 		  	INT NOT NULL 	AUTO_INCREMENT,
   IDComprobante INT NOT NULL,
-  IDLibro 	  	INT NULL,
+  IDLibro 	  	INT NOT NULL,
   Cantidad 	  	INT NULL,
   
   PRIMARY KEY (ID)
@@ -60,7 +60,7 @@ CREATE TABLE Libro
   
   PRIMARY KEY (ID)
 );
-
+	
 ALTER TABLE DetalleComprobante ADD CONSTRAINT fk_libro   FOREIGN KEY (IDLibro) REFERENCES Libro(ID);
 ALTER TABLE Comprobante  	   ADD CONSTRAINT fk_cliente FOREIGN KEY (IDCliente) REFERENCES Cliente(ID);
 ALTER TABLE Comprobante 	   ADD CONSTRAINT fk_sede    FOREIGN KEY (IDSede)    REFERENCES Sede (ID);
