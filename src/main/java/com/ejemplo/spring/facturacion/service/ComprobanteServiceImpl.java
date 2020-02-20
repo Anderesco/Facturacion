@@ -49,6 +49,7 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	ObtenerJSONURL jsonRecibido = new ObtenerJSONURL();
 	
 	Date fechaActual = new Date();
+	Date fechaEmision = new Date();
 	
 	@Override
 	public List<ComprobanteBean> mostrarComprobante(Integer ID) {	
@@ -89,10 +90,9 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		}).collect(Collectors.toList());
 	}
 	
-	public Comprobante guardarComprobante()
-	{
-		jsonRecibidoBean = jsonRecibido.ObtenerJSON();
-				
+	@Override
+	public Comprobante guardarComprobante(JSONRecibidoBean jsonRecibidoBean)
+	{				
 		System.out.println("Cantidad Libros a guardar que trae: " + jsonRecibidoBean.getDetalle().size());
 		
 		Comprobante comprobante = new Comprobante();
@@ -116,7 +116,7 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		comprobante.setSede(sede);
 		comprobante.setCliente(cliente);
 		comprobante.setFechaCreacion(fechaActual);
-		comprobante.setFechaEmision(fechaActual);
+		comprobante.setFechaEmision(null);
 		
 		comprobante.setIdComprobante(comprobanteDao.guardarComprobante(comprobante));
 		
@@ -137,6 +137,14 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		});
 		
 		return comprobante;
+	}
+
+	@Override
+	public List<ComprobanteBean> actualizarEstadoComprobante(Integer ID) {
+		
+		comprobanteDao.actualizarComprobante(ID);
+		
+		return this.mostrarComprobante(ID);
 	}
 
 }

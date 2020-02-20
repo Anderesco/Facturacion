@@ -51,9 +51,8 @@ public class SedeDao
         }
     }
     
-    public void actualizarSede(int id, Sede sede)
+    public void actualizarSede(Sede sede)
     {
-    	String convertir = String.valueOf(id);
     	Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) {
             
@@ -61,7 +60,7 @@ public class SedeDao
             transaction = session.beginTransaction();
             
             // Modifica el objeto Usuario
-            session.update(convertir, sede);
+            session.update(sede);
             
             // Realizar transaccion
             transaction.commit();

@@ -71,6 +71,14 @@ public class Comprobante
 		this.fechaEmision = fechaEmision;
 		this.montoTotal = montoTotal;
 	}
+	
+	
+
+	public Comprobante(Integer idComprobante, String estadoComprobante) {
+		this.idComprobante = idComprobante;
+		this.estadoComprobante = estadoComprobante;
+	}
+
 
 	public List<DetalleComprobante> getDetallecomprobante() {
 		return detallecomprobante;

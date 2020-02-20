@@ -53,9 +53,8 @@ public class ClienteDao
         }
     }
     
-    public void actualizarCliente(int id, Cliente cliente)
+    public void actualizarCliente(Cliente cliente)
     {
-    	String convertir = String.valueOf(id);
     	Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactoria().openSession()) {
             
@@ -63,7 +62,7 @@ public class ClienteDao
             transaction = session.beginTransaction();
             
             // Modifica el objeto Usuario
-            session.update(convertir, cliente);
+            session.update(cliente);
             
             // Realizar transaccion
             transaction.commit();

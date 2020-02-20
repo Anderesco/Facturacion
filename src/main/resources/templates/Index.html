@@ -25,7 +25,7 @@
                       <td th:text="${comprobanteBeans.numeroComprobante}"></td>
                       <td th:text="${comprobanteBeans.estado}"></td>
                       <td>
-	                      <button type="button" class="btn boton-registrar btn-primary"> Generar </button>
+	                      <button type="button" th:onclick="|window.location.href='/actualizarComprobante/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-primary"> Generar </button>
                           <button type="button" th:onclick="|window.location.href='/comprobante/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-success">
                               <span class="glyphicon glyphicon-eye-open"></span>
                           </button>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -74,11 +75,9 @@ public class ComprobanteController
 	//POST
 	@ResponseBody
 	@RequestMapping("guardarComprobante")
-	public JSONRecibidoBean ingresarComprobantes (JSONRecibidoBean comprobanteEnviado)
+	public JSONRecibidoBean ingresarComprobantes (@RequestBody JSONRecibidoBean comprobanteEnviado)
 	{
-		ObtenerJSONURL obtener = new ObtenerJSONURL();
-		comprobanteEnviado = obtener.ObtenerJSON();
-		comprobanteServiceImpl.guardarComprobante();
+		comprobanteServiceImpl.guardarComprobante(comprobanteEnviado);
 		
 		return comprobanteEnviado;
 	}
@@ -110,5 +109,14 @@ public class ComprobanteController
 	{
 		ObtenerJSONURL obtener = new ObtenerJSONURL();
 		return obtener.ObtenerJSON();
+	}
+	
+	//PUT
+	@ResponseBody
+	@RequestMapping("actualizarComprobante/{ID}")
+	public List<ComprobanteBean> actualizarComprobante(@PathVariable Integer ID)
+	{
+		return comprobanteServiceImpl.actualizarEstadoComprobante(ID);
+		
 	}
 }

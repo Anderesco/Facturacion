@@ -54,19 +54,22 @@ public class ComprobanteDao
         }
     }
     
-    public void actualizarComprobante(Comprobante comprobante)
-    {
+	public Integer actualizarComprobante(Integer IDActualizando)
+    {    	
     	Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactoria().openSession()) {
-            
-        	// Inicia la transaccion
-            transaction = session.beginTransaction();
-            
-            // Modifica el objeto Usuario
-            session.update(comprobante);
-            
-            // Realizar transaccion
-            transaction.commit();
+    	Integer actualizandoEstado = 0;
+    	Session session = HibernateUtil.getSessionFactoria().openSession();
+    	System.out.println("Sesion:  " + session);
+    			
+        try {
+        	
+        	Object objeto = session.load(Comprobante.class, IDActualizando);
+        	
+        	Comprobante comprobante = (Comprobante) objeto;
+			
+        	transaction = session.beginTransaction();
+        	comprobante.setEstadoComprobante("Terminado");
+        	transaction.commit();
             
         } 
         catch (Exception e) 
@@ -76,7 +79,8 @@ public class ComprobanteDao
             
             e.printStackTrace();
         }
-    	
+        
+    	return actualizandoEstado;
     }
     
     public void eliminarComprobante(int id, Comprobante comprobante)
