@@ -7,38 +7,35 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="sidebar-menu">
-            <div class="col-lg-3">
-                <h1>Lista de Comprobantes</h1>
-                <table class="table">
-                  <thead class="modal-body">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">N </th>
-                      <th scope="col">Estado </th>
-                      <th scope="col"> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="comprobanteBeans: ${comprobanteBean}">
-                      <th scope="row" th:text="${comprobanteBeans.ID}"></th>
-                      <td th:text="${comprobanteBeans.numeroComprobante}"></td>
-                      <td th:text="${comprobanteBeans.estado}"></td>
-                      <td>
-	                      <button type="button" th:onclick="|window.location.href='/actualizarComprobante/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-primary"> Generar </button>
-                          <button type="button" th:onclick="|window.location.href='/comprobante/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-success">
-                              <span class="glyphicon glyphicon-eye-open"></span>
-                          </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>  
-        </div>   
-           <div class="col-lg-9">
-               <h1>Comprobante</h1>
-               <embed src="templates/prueba.pdf" type="application/pdf" width="100%" height="600px" />
-           </div>                    
+	    <div class="col-lg-4">
+        </div> 
+        <div class="col-lg-4">
+            <h1>Lista de Comprobantes</h1>
+            <table class="table">
+              <thead class="modal-body">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">N </th>
+                  <th scope="col">Estado </th>
+                  <th scope="col"> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="comprobanteBeans: ${comprobanteBean}">
+                  <th scope="row" th:text="${comprobanteBeans.ID}"></th>
+                  <td th:text="${comprobanteBeans.numeroComprobante}"></td>
+                  <td th:text="${comprobanteBeans.estado}"></td>
+                  <td>
+                   <button type="button" th:onclick="|window.location.href='/actualizarComprobante/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-primary"> Generar </button>
+                      <button type="button" th:onclick="|window.location.href='/comprobante/${comprobanteBeans.ID}'|" class="btn boton-registrar btn-success">
+                          <span class="glyphicon glyphicon-eye-open"></span>
+                      </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>    
+        <div class="col-lg-4"></div>                    
     </div> 
        
 </body>

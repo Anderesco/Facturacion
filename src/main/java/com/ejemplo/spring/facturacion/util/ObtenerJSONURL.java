@@ -51,7 +51,7 @@ public class ObtenerJSONURL
                 	System.out.println("objeto:" + objeto);
                     objectorecibido =  (JSONObject) objeto;
                     
-                    jsonRecibido.setNombre((String) objectorecibido.get("nombreCliente"));
+                    /*jsonRecibido.setNombre((String) objectorecibido.get("nombreCliente"));
                     jsonRecibido.setApellidoPaterno((String) objectorecibido.get("apellidoPaterno"));
                     jsonRecibido.setApellidoMaterno((String) objectorecibido.get("apellidoMaterno"));
                     jsonRecibido.setDNI((String) objectorecibido.get("dni"));
@@ -59,7 +59,7 @@ public class ObtenerJSONURL
                     jsonRecibido.setMonto((Double) objectorecibido.get("montototal"));
                     jsonRecibido.setEstado((String) objectorecibido.get("estado"));
                     jsonRecibido.setSede((String) objectorecibido.get("sede"));
-                    jsonRecibido.setNumeroComprobante((Long) objectorecibido.get("numeroComprobante"));
+                    jsonRecibido.setNumeroComprobante((Long) objectorecibido.get("numeroComprobante"));*/
                     
                     JSONArray detalleJson = (JSONArray) objectorecibido.get("detalle");
 

@@ -4,7 +4,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.MailParseException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
@@ -51,6 +59,9 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	Date fechaActual = new Date();
 	Date fechaEmision = new Date();
 	
+	@Autowired
+    private JavaMailSender mailSender;
+	
 	@Override
 	public List<ComprobanteBean> mostrarComprobante(Integer ID) {	
 		return comprobanteDao.mostrarComprobante().stream().filter(comprobante -> comprobante.getIdComprobante() == ID).map(comprobante -> {
@@ -93,20 +104,22 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	@Override
 	public Comprobante guardarComprobante(JSONRecibidoBean jsonRecibidoBean)
 	{				
-		System.out.println("Cantidad Libros a guardar que trae: " + jsonRecibidoBean.getDetalle().size());
 		
 		Comprobante comprobante = new Comprobante();
 		Sede sede = new Sede();
 		Cliente cliente = new Cliente();
 		
-		sede.setNombreSede(jsonRecibidoBean.getSede());
+		sede.setNombreSede(jsonRecibidoBean.getSede().getNombreSede());
+		sede.setDireccionSede(jsonRecibidoBean.getSede().getDireccionSede());
+		sede.setTelefonoSede(jsonRecibidoBean.getSede().getTelefonoSede());
 		sedeDao.guardarSede(sede);
 		
-		cliente.setNombreCliente(jsonRecibidoBean.getNombre());
-		cliente.setApellidoPaternoCliente(jsonRecibidoBean.getApellidoPaterno());
-		cliente.setApellidoMaternoCliente(jsonRecibidoBean.getApellidoMaterno());
-		cliente.setDniCliente(jsonRecibidoBean.getDNI());
-		cliente.setRucCliente(jsonRecibidoBean.getRUC());
+		cliente.setNombreCliente(jsonRecibidoBean.getCliente().getNombreCliente());
+		cliente.setApellidoPaternoCliente(jsonRecibidoBean.getCliente().getApellidoPaternoCliente());
+		cliente.setApellidoMaternoCliente(jsonRecibidoBean.getCliente().getApellidoMaternoCliente());
+		cliente.setDniCliente(jsonRecibidoBean.getCliente().getDniCliente());
+		cliente.setRucCliente(jsonRecibidoBean.getCliente().getRucCliente());
+		cliente.setEdad(jsonRecibidoBean.getCliente().getEdad());
 		
 		clienteDao.guardarCliente(cliente);
 		
@@ -120,10 +133,11 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		
 		comprobante.setIdComprobante(comprobanteDao.guardarComprobante(comprobante));
 		
-		System.out.println("Cantidad Libros a guardar: " + jsonRecibidoBean.getDetalle().size());
 		jsonRecibidoBean.getDetalle().forEach(libro -> {
 			Libro libroEntity = new Libro();
 			libroEntity.setNombreLibro(libro.getNombreLibro());
+			libroEntity.setAnioLibro(libro.getAnio());
+			libroEntity.setAutorLibro(libro.getAutor());
 			libroEntity.setPrecioLibro(Float.parseFloat(String.valueOf(libro.getPrecioLibro())));
 			
 			libroEntity.setIdLibro(libroDao.guardarLibro(libroEntity));
@@ -146,5 +160,41 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		
 		return this.mostrarComprobante(ID);
 	}
+	
+	public Boolean EnviarCorreo(Integer ID)
+	{
+		/*List<ComprobanteBean> comprobanteBeanLista = this.mostrarComprobante(ID);
+		SimpleMailMessage email = new SimpleMailMessage();
 
+        email.setTo("anderesco94@gmail.com", "luis.faucheux@unmsm.edu.pe");
+        email.setSubject("FACTURA PROCESADA");
+        email.setText("Se envía los siguientes Datos: \n" + comprobanteBeanLista.toString());
+        
+        mailSender.send(email);
+        
+        System.out.println("Se ha enviado correctamente... ");*/
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		String [] correos = {"anderesco94@gmail.com" , "luis.faucheux@unmsm.edu.pe"};
+		try
+		{
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+				
+			helper.setTo(correos);
+			helper.setSubject("FACTURA PROCESADA");
+			helper.setText("Se envía los siguientes Datos");
+				
+			FileSystemResource file = new FileSystemResource("C:\\Users\\evarillast\\Downloads\\Contrato graduación B15.pdf");
+			helper.addAttachment(file.getFilename(), file);
+
+		}
+		catch (MessagingException e) 
+		{
+			throw new MailParseException(e);
+		}
+		
+		mailSender.send(message);
+        
+        return true;
+	}
 }

@@ -8,8 +8,8 @@ public class JSONRecibidoDetalleBean
 	private String nombreLibro;
 	private Long cantidadLibro;
 	private Double precioLibro;
-	
-	
+	private Integer anio;
+	private String autor;
 	
 	
 	public JSONRecibidoDetalleBean() {
@@ -39,10 +39,24 @@ public class JSONRecibidoDetalleBean
 	public void setPrecioLibro(Double precioLibro) {
 		this.precioLibro = precioLibro;
 	}
+	public Integer getAnio() {
+		return anio;
+	}
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
+	public String getAutor() {
+		return autor;
+	}
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "JSONRecibidoDetalleBean [nombreLibro=" + nombreLibro + ", cantidadLibro=" + cantidadLibro
-				+ ", precioLibro=" + precioLibro + "]";
+				+ ", precioLibro=" + precioLibro + ", anio=" + anio + ", autor=" + autor + "]";
 	}
 	
 	

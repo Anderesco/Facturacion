@@ -4,69 +4,35 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.ejemplo.spring.facturacion.entity.Cliente;
+import com.ejemplo.spring.facturacion.entity.Sede;
+
 
 @Component
 public class JSONRecibidoBean 
 {
-	private String nombre;
-	private String apellidoPaterno;
-	private String apellidoMaterno;
-	private String DNI;
-	private String RUC;
-	private Double monto;
+	private Cliente cliente;
+	private Sede sede;
+	private Float monto;
 	private String estado;
-	private String sede;
-	private Long numeroComprobante;
+	private Integer numeroComprobante;
 	private List<JSONRecibidoDetalleBean> detalle;
-	
-	
-	
-	public List<JSONRecibidoDetalleBean> getDetalle() {
-		return detalle;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setDetalle(List<JSONRecibidoDetalleBean> detalle) {
-		this.detalle = detalle;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	public Long getNumeroComprobante() {
-		return numeroComprobante;
+	public Sede getSede() {
+		return sede;
 	}
-	public void setNumeroComprobante(Long numeroComprobante) {
-		this.numeroComprobante = numeroComprobante;
+	public void setSede(Sede sede) {
+		this.sede = sede;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellidoPaterno() {
-		return apellidoPaterno;
-	}
-	public void setApellidoPaterno(String apellidoPaterno) {
-		this.apellidoPaterno = apellidoPaterno;
-	}
-	public String getApellidoMaterno() {
-		return apellidoMaterno;
-	}
-	public void setApellidoMaterno(String apellidoMaterno) {
-		this.apellidoMaterno = apellidoMaterno;
-	}
-	public String getDNI() {
-		return DNI;
-	}
-	public void setDNI(String dNI) {
-		DNI = dNI;
-	}
-	public String getRUC() {
-		return RUC;
-	}
-	public void setRUC(String rUC) {
-		RUC = rUC;
-	}
-	public Double getMonto() {
+	public Float getMonto() {
 		return monto;
 	}
-	public void setMonto(Double monto) {
+	public void setMonto(Float monto) {
 		this.monto = monto;
 	}
 	public String getEstado() {
@@ -75,20 +41,24 @@ public class JSONRecibidoBean
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public String getSede() {
-		return sede;
+	public List<JSONRecibidoDetalleBean> getDetalle() {
+		return detalle;
 	}
-	public void setSede(String sede) {
-		this.sede = sede;
+	public void setDetalle(List<JSONRecibidoDetalleBean> detalle) {
+		this.detalle = detalle;
 	}
+	public Integer getNumeroComprobante() {
+		return numeroComprobante;
+	}
+	public void setNumeroComprobante(Integer numeroComprobante) {
+		this.numeroComprobante = numeroComprobante;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "JSONRecibidoBean [nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno="
-				+ apellidoMaterno + ", DNI=" + DNI + ", RUC=" + RUC + ", monto=" + monto + ", estado=" + estado
-				+ ", sede=" + sede + ", numeroComprobante=" + numeroComprobante + ", detalle=" + detalle + "]";
+		return "JSONRecibidoBean [cliente=" + cliente + ", sede=" + sede + ", monto=" + monto + ", estado=" + estado
+				+ ", numeroComprobante=" + numeroComprobante + ", detalle=" + detalle + "]";
 	}
-
-	
 	
 }

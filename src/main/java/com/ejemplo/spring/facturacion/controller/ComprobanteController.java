@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
@@ -82,6 +83,23 @@ public class ComprobanteController
 		return comprobanteEnviado;
 	}
 	
+	//PUT
+	@ResponseBody
+	@RequestMapping("actualizarComprobante/{ID}")
+	public List<ComprobanteBean> actualizarComprobante(@PathVariable Integer ID)
+	{
+		return comprobanteServiceImpl.actualizarEstadoComprobante(ID);
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("enviarComprobante/{ID}")
+	public boolean enviarComprobante(@PathVariable Integer ID)
+	{
+		return comprobanteServiceImpl.EnviarCorreo(ID);
+	}
+	
 	@ResponseBody
 	@RequestMapping("prueba-json-envio")				   
 	public List<ComprobanteBeanEnvio> listarComprobantesEnvio() 
@@ -111,12 +129,4 @@ public class ComprobanteController
 		return obtener.ObtenerJSON();
 	}
 	
-	//PUT
-	@ResponseBody
-	@RequestMapping("actualizarComprobante/{ID}")
-	public List<ComprobanteBean> actualizarComprobante(@PathVariable Integer ID)
-	{
-		return comprobanteServiceImpl.actualizarEstadoComprobante(ID);
-		
-	}
 }

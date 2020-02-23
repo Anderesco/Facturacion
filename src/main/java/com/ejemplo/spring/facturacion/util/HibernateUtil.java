@@ -30,9 +30,9 @@ private static SessionFactory sessionFactory;
 				Properties ajustes = new Properties();
 				
 				ajustes.put(Environment.SHOW_SQL, "true");
-				ajustes.put(Environment.URL, "jdbc:mysql://34.223.247.148:3306/facturacion?useSSL=false");
-				ajustes.put(Environment.USER, "root");
-				ajustes.put(Environment.PASS, "P@ssW0rd2017");
+				ajustes.put(Environment.URL, "jdbc:mysql://192.168.0.16:3306/facturacion?useSSL=false");
+				ajustes.put(Environment.USER, "integra");
+				ajustes.put(Environment.PASS, "integra");
 				ajustes.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 				
 				ajustes.put(Environment.SHOW_SQL, "true");
