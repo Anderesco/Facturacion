@@ -10,7 +10,6 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailParseException;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -162,30 +161,20 @@ public class ComprobanteServiceImpl implements ComprobanteService
 	}
 	
 	public Boolean EnviarCorreo(Integer ID)
-	{
-		/*List<ComprobanteBean> comprobanteBeanLista = this.mostrarComprobante(ID);
-		SimpleMailMessage email = new SimpleMailMessage();
-
-        email.setTo("anderesco94@gmail.com", "luis.faucheux@unmsm.edu.pe");
-        email.setSubject("FACTURA PROCESADA");
-        email.setText("Se envía los siguientes Datos: \n" + comprobanteBeanLista.toString());
-        
-        mailSender.send(email);
-        
-        System.out.println("Se ha enviado correctamente... ");*/
-		
+	{		
 		MimeMessage message = mailSender.createMimeMessage();
-		String [] correos = {"anderesco94@gmail.com" , "luis.faucheux@unmsm.edu.pe"};
+		String [] correos = {"anderesco94@gmail.com" , "christian.romero2@unmsm.edu.pe"};
 		try
 		{
-			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			MimeMessageHelper correo = new MimeMessageHelper(message, true);
 				
-			helper.setTo(correos);
-			helper.setSubject("FACTURA PROCESADA");
-			helper.setText("Se envía los siguientes Datos");
+			correo.setTo(correos);
+			correo.setSubject("FACTURA PROCESADA");
+			correo.setText("Su factura se encuentra procesada, si desea verificar use el siguiente dato para realizar la petición:  \n" + 
+						   "ID: " + ID);
 				
-			FileSystemResource file = new FileSystemResource("C:\\Users\\evarillast\\Downloads\\Contrato graduación B15.pdf");
-			helper.addAttachment(file.getFilename(), file);
+			/*FileSystemResource archivo = new FileSystemResource("ruta");
+			correo.addAttachment(archivo.getFilename(), archivo);*/
 
 		}
 		catch (MessagingException e) 
@@ -194,7 +183,9 @@ public class ComprobanteServiceImpl implements ComprobanteService
 		}
 		
 		mailSender.send(message);
-        
+		
+		System.out.println("Se ha enviado el correo, revise su Inbox");
+		
         return true;
 	}
 }

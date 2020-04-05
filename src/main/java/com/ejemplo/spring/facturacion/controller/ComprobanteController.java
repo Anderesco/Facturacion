@@ -1,23 +1,16 @@
 package com.ejemplo.spring.facturacion.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ejemplo.spring.facturacion.bean.ComprobanteBean;
-import com.ejemplo.spring.facturacion.bean.ComprobanteBeanEnvio;
-import com.ejemplo.spring.facturacion.bean.DetalleComprobanteBean;
 import com.ejemplo.spring.facturacion.bean.JSONRecibidoBean;
 import com.ejemplo.spring.facturacion.service.ClienteServiceImpl;
 import com.ejemplo.spring.facturacion.service.ComprobanteServiceImpl;
@@ -40,7 +33,7 @@ public class ComprobanteController
 	ObtenerJSONURL obtener = new ObtenerJSONURL();
 	
 	//Vista
-	@GetMapping("comprobante")
+	/*@GetMapping("comprobante")
 	public String MostrarComprobante(Model modelo) throws IOException, JSONException
 	{
 		List<ComprobanteBean> listaComprobanteBean = comprobanteServiceImpl.mostrarComprobanteTotal();
@@ -51,7 +44,7 @@ public class ComprobanteController
 		modelo.addAttribute("comprobanteBean", listaComprobanteBean);
 
 		return "Index";
-	}
+	}*/
 	
 	//GET
 	@ResponseBody
@@ -88,11 +81,10 @@ public class ComprobanteController
 	@RequestMapping("actualizarComprobante/{ID}")
 	public List<ComprobanteBean> actualizarComprobante(@PathVariable Integer ID)
 	{
-		return comprobanteServiceImpl.actualizarEstadoComprobante(ID);
-		
+		return comprobanteServiceImpl.actualizarEstadoComprobante(ID);	
 	}
 	
-	
+	//GET
 	@ResponseBody
 	@RequestMapping("enviarComprobante/{ID}")
 	public boolean enviarComprobante(@PathVariable Integer ID)
@@ -100,7 +92,7 @@ public class ComprobanteController
 		return comprobanteServiceImpl.EnviarCorreo(ID);
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("prueba-json-envio")				   
 	public List<ComprobanteBeanEnvio> listarComprobantesEnvio() 
 	{
@@ -127,6 +119,6 @@ public class ComprobanteController
 	{
 		ObtenerJSONURL obtener = new ObtenerJSONURL();
 		return obtener.ObtenerJSON();
-	}
+	}*/
 	
 }
